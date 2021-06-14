@@ -1,6 +1,4 @@
 export class Hub{
-    constructor(private id:number,private hubName:string) {
-        
-        
+    constructor(public id:number,public hubName:string) { 
     }
 }
