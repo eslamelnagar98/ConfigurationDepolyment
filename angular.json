@@ -51,9 +51,14 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/ExternalScript/jquery-3.6.0.min.js",
+              "./node_modules/ExternalScript/popper.min.js",
+              "./node_modules/ExternalScript/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
