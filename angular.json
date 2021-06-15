@@ -56,8 +56,8 @@
             ],
             "scripts": [
               "./ExternalScript/jquery-3.6.0.min.js",
-              "./ExternalScript/ExternalScript/popper.min.js",
-              "./ExternalScript/ExternalScript/bootstrap.min.js"
+              "./ExternalScript/popper.min.js",
+              "./ExternalScript/bootstrap.min.js"
             ]
           },
           "configurations": {
