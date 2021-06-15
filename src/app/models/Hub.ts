@@ -1,4 +1,4 @@
 export class Hub{
-    constructor(public id:number,public hubName:string) { 
+    constructor(public hubID:number,public hubName:string) { 
     }
 }

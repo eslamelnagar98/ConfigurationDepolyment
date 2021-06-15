@@ -9,22 +9,16 @@ import { Hub } from '../models/Hub';
 export class ConfigurationService {
 
   constructor(public MyClient: HttpClient) { }
-  private baseUrl = "https://localhost:5001";
-  private hubsUrl = "api/hub";
-  hubs: Array<Hub> = [];
-  applications: Array<Application> =
-    [
-      new Application(1, 'App1', 1),
-      new Application(2, 'App1', 2),
-      new Application(3, 'App2', 1),
-      new Application(4, 'App2', 2),
-    ]
+  private baseUrl = "https://localhost:5001/api";
+  private hubsUrl = "hub";
+  private url = "https://localhost:5001/api/Application"
+  private hubsWithApplication = "Application";
 
   getAllHubs() {
-    return this.MyClient.get(`${this.baseUrl}/${this.hubsUrl}`);
+    return this.MyClient.get<Array<Hub>>(`${this.baseUrl}/${this.hubsUrl}`);
   }
-  getHubApplicationsById(id: number) {
-    return this.applications.filter(P => P.hubId == id).slice();
+  getHubApplicationsById(app:Application) {
+    return this.MyClient.post(`${this.baseUrl}/${this.hubsWithApplication}`,app);
   }
 
 
