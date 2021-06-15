@@ -11,14 +11,17 @@ import { ConfigurationService } from 'src/app/shared/configuration.service';
 })
 export class HomeComponent implements OnInit {
 
-  hubs: Array<Hub> = [];
+  hubs:any= [];
   applications: Array<Application> = [];
   id: number = 0;
   constructor(private configurationService: ConfigurationService, private routes: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.routes.snapshot.params['id'];
-    this.hubs = this.configurationService.getAllHubs();
+    this.configurationService.getAllHubs().subscribe(
+      (res)=>{this.hubs=res},
+      (error)=>{console.error(error)}
+    );
     this.applications = this.configurationService.getHubApplicationsById(this.id);
     this.routes.params.subscribe(
       (params: Params) => {
