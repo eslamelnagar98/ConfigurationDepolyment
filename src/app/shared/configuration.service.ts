@@ -11,14 +11,13 @@ export class ConfigurationService {
   constructor(public MyClient: HttpClient) { }
   private baseUrl = "https://localhost:5001/api";
   private hubsUrl = "hub";
-  private url = "https://localhost:5001/api/Application"
-  private hubsWithApplication = "Application";
+  private hubsWithApplication = "Application/GetAppByhubID";
 
   getAllHubs() {
     return this.MyClient.get<Array<Hub>>(`${this.baseUrl}/${this.hubsUrl}`);
   }
-  getHubApplicationsById(app:Application) {
-    return this.MyClient.post(`${this.baseUrl}/${this.hubsWithApplication}`,app);
+  getHubApplicationsById(id: number) {
+    return this.MyClient.get<Array<Application>>(`${this.baseUrl}/${this.hubsWithApplication}/${id}`)
   }
 
 

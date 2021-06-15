@@ -12,35 +12,34 @@ import { ConfigurationService } from 'src/app/shared/configuration.service';
 export class HomeComponent implements OnInit {
 
   hubs: Array<Hub> = [];
-  //applications: any = [];
   id: number = 0;
+  applications: Array<Application> = [];
   hubId: number = 0;
   constructor(private configurationService: ConfigurationService, private routes: ActivatedRoute) { }
-
-
   ngOnInit(): void {
-    //this.id = this.routes.snapshot.params['id'];
+    this.id = this.routes.snapshot.params['id'];
     this.configurationService.getAllHubs().subscribe(
       (res) => {
         this.hubs = res
       },
       (error) => { console.error(error) }
     );
-    //this.hubId = this.id;
-    // this.routes.params.subscribe(
-    //   (params: Params) => {
-    //     this.applications = this.configurationService.getHubApplicationsById(Number(params['id']));
-    //   }
-    // );
+    if (this.id) {
+      this.routes.params.subscribe(
+        (params: Params) => {
+          this.configurationService.getHubApplicationsById(Number(params['id']))
+            .subscribe(
+              (res) => { this.applications = res }
+            )
+        }
+      );
+    }
   }
 
-  // getHubApplicationsById(id:number){
-  //   this.configurationService.getHubApplicationsById(id).subscribe(
-  //     (res)=>{
-  //       this.applications=res
-  //     },
-  //     (err)=>console.error(err)
+  // getAllHubApps(id2: number) {
+  //   this.configurationService.getHubApplicationsById(id2).subscribe(
+  //     (res) => { this.applications = res
+  //     console.log(this.applications);}
   //   );
-  //}
-
+  // }
 }

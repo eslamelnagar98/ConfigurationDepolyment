@@ -6,12 +6,26 @@
   </button>
 
   <div class="dropdown-menu" aria-labelledBy="HubsDropDown">
-    <a [routerLink]="['/app',hub.hubID]" *ngFor="let hub of hubs" class="dropdown-item" href="#">{{hub.hubName}}</a>
+    <a [routerLink]="['/home',hub.hubID]" *ngFor="let hub of hubs" class="dropdown-item" href="#">{{hub.hubName}}</a>
   </div>
 
 </div>
 
+
 <div class="input-group mb-3 my-4">
   <input id="filesSelector" type="file" class="form-control">
 </div>
-
+<table  class="table table-striped table-bordered border-2 border-dark my-5">
+  <thead>
+    <tr>
+      <th scope="col">ApplicationId</th>
+      <th scope="col">ApplicationName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let application of applications">
+      <td>{{application.appID}}</td>
+      <td>{{application.appName}}</td>
+    </tr>
+  </tbody>
+</table>
