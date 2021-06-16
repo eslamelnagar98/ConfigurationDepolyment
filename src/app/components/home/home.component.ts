@@ -1,4 +1,4 @@
-import { Component, HostListener, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Application } from 'src/app/models/Application';
 import { Hub } from 'src/app/models/Hub';
@@ -14,32 +14,24 @@ export class HomeComponent implements OnInit {
   hubs: Array<Hub> = [];
   id: number = 0;
   applications: Array<Application> = [];
-  hubId: number = 0;
   constructor(private configurationService: ConfigurationService, private routes: ActivatedRoute) { }
   ngOnInit(): void {
+    
     this.id = this.routes.snapshot.params['id'];
-    this.configurationService.getAllHubs().subscribe(
-      (res) => {
-        this.hubs = res
-      },
-      (error) => { console.error(error) }
-    );
+    this.configurationService.getAllHubs().then((res) => res.subscribe(
+      (result) => { this.hubs = result }
+    )).catch((err) => console.log(err));
+
     if (this.id) {
       this.routes.params.subscribe(
         (params: Params) => {
-          this.configurationService.getHubApplicationsById(Number(params['id']))
-            .subscribe(
-              (res) => { this.applications = res }
+          this.configurationService.getHubApplicationsById(Number(params['id'])).then(
+            (res)=>res.subscribe(
+              (result)=>{this.applications=result}
             )
+          )
         }
       );
     }
   }
-
-  // getAllHubApps(id2: number) {
-  //   this.configurationService.getHubApplicationsById(id2).subscribe(
-  //     (res) => { this.applications = res
-  //     console.log(this.applications);}
-  //   );
-  // }
 }

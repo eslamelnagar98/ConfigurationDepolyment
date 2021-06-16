@@ -1,0 +1,16 @@
+<table class="table table-striped table-bordered border-2 border-dark my-5">
+    <thead>
+        <tr>
+            <th scope="col">ApplicationId</th>
+            <th scope="col">ApplicationName</th>
+            <th scope="col">Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let hub of hubs">
+            <td>{{hub.hubID}}</td>
+            <td>{{hub.hubName}}</td>
+            <td><i class="fas fa-edit"></i></td>
+        </tr>
+    </tbody>
+</table>
