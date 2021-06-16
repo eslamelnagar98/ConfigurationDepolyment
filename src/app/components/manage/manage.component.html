@@ -1,0 +1,15 @@
+<div class="btn-group">
+    <button id="HubsDropDown" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Manage
+    </button>
+
+    <div class="dropdown-menu" aria-labelledBy="HubsDropDown">
+        <a [routerLink]="['hubsForm']" class="dropdown-item">Hubs</a>
+        <a [routerLink]="['ApplicationForm']" class="dropdown-item">Application</a>
+    </div>
+</div>
+
+<div>
+    <router-outlet></router-outlet>
+</div>
