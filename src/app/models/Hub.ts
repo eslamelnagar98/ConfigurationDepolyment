@@ -1,4 +1,5 @@
-export class Hub{
-    constructor(public hubID:number,public hubName:string) { 
+export interface IHub{
+  
+         hubID?:number,
+          hubName:string 
     }
-}

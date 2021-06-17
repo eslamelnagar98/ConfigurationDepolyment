@@ -1,0 +1,16 @@
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary"  (click)="add()">
+  Add Hub
+</button>
+
+
+
+<div class="list-group" style="width: 250px;" >
+    <a href="#" class="list-group-item list-group-item-action" aria-current="true" 
+    *ngFor ='let hub of Hubs'
+    >
+     {{hub.hubName}}
+    </a>
+
+  </div>

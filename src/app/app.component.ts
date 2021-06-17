@@ -1,5 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { ConfigurationService } from './shared/configuration.service';
+import { ConfigurationService } from './Services/configuration.service';
 @Injectable()
 @Component({
   selector: 'app-root',

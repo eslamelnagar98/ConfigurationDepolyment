@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Hub } from 'src/app/models/Hub';
-import { ConfigurationService } from 'src/app/shared/configuration.service';
+import { IHub } from 'src/app/models/Hub';
+import { ConfigurationService } from 'src/app/Services/configuration.service';
 
 @Component({
   selector: 'app-hubs-from',
   templateUrl: './hubs-from.component.html',
   styleUrls: ['./hubs-from.component.css']
 })
-export class HubsFromComponent implements OnInit {
+export class HubsFromComponent  {
 
-  id: number = 0;
+ /* id: number = 0;
   hubs: Array<Hub> = [];
   constructor(private configurationService: ConfigurationService, private routes: ActivatedRoute) { }
 
@@ -19,5 +19,5 @@ export class HubsFromComponent implements OnInit {
       (result) => { this.hubs = result }
     )).catch((err) => console.log(err));
   }
-
+*/
 }
