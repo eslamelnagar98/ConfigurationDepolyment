@@ -10,6 +10,7 @@ import { ManageComponent } from './components/manage/manage.component';
 import { HubsFromComponent } from './components/hubs-from/hubs-from.component';
 import { ApplicationsFromComponent } from './components/applications-from/applications-from.component';
 import { AppDetailsComponent } from './components/app-details/app-details.component';
+import { ApplicationsComponent } from './NewComponents/applications/applications.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppDetailsComponent } from './components/app-details/app-details.compon
     ManageComponent,
     HubsFromComponent,
     ApplicationsFromComponent,
-    AppDetailsComponent
+    AppDetailsComponent,
+    ApplicationsComponent
   ],
   imports: [
     HttpClientModule,
