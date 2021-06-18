@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Application } from 'src/app/models/Application';
+//import { Application } from 'src/app/models/Application';
 import { IHub } from 'src/app/models/Hub';
 import { ConfigurationService } from 'src/app/Services/configuration.service';
 
@@ -13,7 +13,7 @@ export class HomeComponent  {
 
   hubs: Array<IHub> = [];
   id: number = 0;
-  applications: Array<Application> = [];
+  //applications: Array<Application> = [];
   constructor(private configurationService: ConfigurationService, private routes: ActivatedRoute) { }
   /*ngOnInit(): void {
     

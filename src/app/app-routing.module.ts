@@ -5,12 +5,16 @@ import { ApplicationsFromComponent } from './components/applications-from/applic
 import { HomeComponent } from './components/home/home.component';
 import { HubsFromComponent } from './components/hubs-from/hubs-from.component';
 import { ManageComponent } from './components/manage/manage.component';
+import { ApplicationsComponent } from './NewComponents/deployment/applications/applications.component';
+import { DeploymentComponent } from './NewComponents/deployment/deployment.component';
 import { HubsComponent } from './NewComponents/hubs/hubs.component'
 
 
 const routes: Routes = [
   { path: 'hubs', component:HubsComponent},
-  { path: '', component: HubsComponent },
+  { path: '', component: DeploymentComponent, children:[
+    {path:':id', component:ApplicationsComponent}
+  ] },
   { path: 'home', component:HomeComponent },
   { path: 'home/:id',component: HomeComponent},
   { path: 'Manage', component: ManageComponent,children:[

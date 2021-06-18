@@ -1,3 +1,4 @@
-export class Application{
-    constructor(public appID:number,public appName:string) {}
+export interface IApplication{
+ appID?:number,
+  appName:String
 }

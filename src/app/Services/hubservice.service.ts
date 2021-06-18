@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Application } from '../models/Application';
 import { IHub } from '../models/Hub';
 import { Observable, throwError } from 'rxjs';
 import {catchError,tap} from 'rxjs/operators';
@@ -39,7 +38,7 @@ export class HubserviceService {
  }
  UpdateEmployee(updatedhub:IHub):Observable<void>
  {
-   return this.http.put<void>(`${this.url}}/${updatedhub.hubID}`,updatedhub,{
+   return this.http.put<void>(`${this.url}/${updatedhub.hubID}`,updatedhub,{
     headers:new HttpHeaders({ 
    'Content-Type':'application/json'
 
@@ -53,7 +52,7 @@ export class HubserviceService {
  
   Deletehub(HubId:number):Observable<void>
   {
-    return this.http.delete<void>(`http://localhost:5555/api/employees/${HubId}`);
+    return this.http.delete<void>(`${this.url}/${HubId}`);
   }
   
   private handleError(err:HttpErrorResponse)

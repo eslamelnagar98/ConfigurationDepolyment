@@ -10,12 +10,17 @@ import { ManageComponent } from './components/manage/manage.component';
 import { HubsFromComponent } from './components/hubs-from/hubs-from.component';
 import { ApplicationsFromComponent } from './components/applications-from/applications-from.component';
 import { AppDetailsComponent } from './components/app-details/app-details.component';
-import { ApplicationsComponent } from './NewComponents/applications/applications.component';
+import { ApplicationsComponent } from './NewComponents/deployment/applications/applications.component';
 import { HubsComponent } from './NewComponents/hubs/hubs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { CreatehubComponent } from './NewComponents/createhub/createhub.component';
+import { CreatehubComponent } from './NewComponents/hubs/createhub/createhub.component';
 import { FormsModule } from '@angular/forms';
+import { EdithubComponent } from './NewComponents/hubs/edithub/edithub.component';
+import { DeploymentComponent } from './NewComponents/deployment/deployment.component';
+import { CreateAppComponent } from './NewComponents/deployment/applications/create-app/create-app.component';
+import { EditAppComponent } from './NewComponents/deployment/applications/edit-app/edit-app.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +35,10 @@ import { FormsModule } from '@angular/forms';
     ApplicationsComponent,
     HubsComponent,
     CreatehubComponent,
+    EdithubComponent,
+    DeploymentComponent,
+    CreateAppComponent,
+    EditAppComponent,
   ],
   imports: [
     HttpClientModule,
@@ -41,7 +50,10 @@ import { FormsModule } from '@angular/forms';
     
   ],
   entryComponents:[
-    CreatehubComponent
+    CreatehubComponent,
+    EdithubComponent,
+    CreateAppComponent,
+    EditAppComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
