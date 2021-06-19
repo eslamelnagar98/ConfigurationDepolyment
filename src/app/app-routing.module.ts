@@ -8,18 +8,27 @@ import { ManageComponent } from './components/manage/manage.component';
 import { ApplicationsComponent } from './NewComponents/deployment/applications/applications.component';
 import { DeploymentComponent } from './NewComponents/deployment/deployment.component';
 import { HubsComponent } from './NewComponents/hubs/hubs.component'
+import { Applications2Component } from './NewComponents/apps/applications2/applications2.component';
+import { CreateappComponent } from './NewComponents/apps/createapp/createapp/createapp.component';
+import { EditappComponent } from './NewComponents/apps/editapp/editapp.component';
 
 
 const routes: Routes = [
   { path: 'hubs', component:HubsComponent},
-  { path: '', component: DeploymentComponent, children:[
+  { path: 'applications', component:Applications2Component},
+  { path: 'createapp', component:CreateappComponent},
+  //{ path: 'editapp/:id', component:EditappComponent},
+
+
+
+  { path: 'deployment', component: DeploymentComponent, children:[
     {path:':id', component:ApplicationsComponent}
   ] },
   { path: 'home', component:HomeComponent },
   { path: 'home/:id',component: HomeComponent},
   { path: 'Manage', component: ManageComponent,children:[
   { path: 'hubsForm', component: HubsFromComponent },
-    { path: 'ApplicationForm', component: ApplicationsFromComponent},
+  { path: 'ApplicationForm', component: ApplicationsFromComponent},
   ]}
 ]
 @NgModule({

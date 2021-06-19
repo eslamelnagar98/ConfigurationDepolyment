@@ -20,6 +20,13 @@ import { EdithubComponent } from './NewComponents/hubs/edithub/edithub.component
 import { DeploymentComponent } from './NewComponents/deployment/deployment.component';
 import { CreateAppComponent } from './NewComponents/deployment/applications/create-app/create-app.component';
 import { EditAppComponent } from './NewComponents/deployment/applications/edit-app/edit-app.component';
+import { Applications2Component } from './NewComponents/apps/applications2/applications2.component';
+import { CreateappComponent } from './NewComponents/apps/createapp/createapp/createapp.component';
+import { EditappComponent } from './NewComponents/apps/editapp/editapp.component';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 @NgModule({
@@ -39,6 +46,9 @@ import { EditAppComponent } from './NewComponents/deployment/applications/edit-a
     DeploymentComponent,
     CreateAppComponent,
     EditAppComponent,
+    Applications2Component,
+    CreateappComponent,
+    EditappComponent,
   ],
   imports: [
     HttpClientModule,
@@ -46,7 +56,10 @@ import { EditAppComponent } from './NewComponents/deployment/applications/edit-a
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatFormFieldModule
     
   ],
   entryComponents:[
@@ -54,6 +67,8 @@ import { EditAppComponent } from './NewComponents/deployment/applications/edit-a
     EdithubComponent,
     CreateAppComponent,
     EditAppComponent,
+    CreateappComponent,
+    EditappComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

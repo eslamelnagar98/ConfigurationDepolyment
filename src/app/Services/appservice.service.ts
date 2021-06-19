@@ -36,12 +36,7 @@ export class AppserviceService {
    return this.http.post<IApplication>(this.url,newapp,{
      headers:new HttpHeaders({
        'Content-Type':'application/json'
-     })}).pipe(
-      tap(
-      (App=>  console.log("Creating App" + App)
-      ),catchError(this.handleError)
-      )
-     )
+     })})
  }
  UpdateApp(updatedApp:IApplication):Observable<void>
  {

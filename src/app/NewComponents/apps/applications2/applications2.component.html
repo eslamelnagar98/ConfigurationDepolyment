@@ -1,0 +1,24 @@
+<table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor='let app of apps'>
+        <td>{{app.appID}}</td>
+        <td>{{app.appName}}</td>
+        <td><button  (click)="edit(app.appName, app.appID)" class="btn btn-warning"> Edit </button></td>
+        <td><button (click)="delete(app.appID)" class="btn btn-danger"> Delete </button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-outline-primary"
+  style="width:110px"
+   (click)="add()">
+Add Application
+</button>

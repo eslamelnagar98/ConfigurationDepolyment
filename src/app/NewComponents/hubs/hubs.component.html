@@ -1,12 +1,12 @@
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary"  (click)="add()">
-  Add Hub
-</button>
+  
 
 
-
-<div class="list-group" style="width: 250px;" >
+<div class="container col-sm-4 float-start" style="width: 250px;" >
+  <button type="button" class="btn btn-primary"  (click)="add()">
+    Add Hub
+  </button>
+<div class="list-group" >
   <div class="row" *ngFor ='let hub of Hubs'>
     <a href="#" class="list-group-item list-group-item-action" aria-current="true" 
       routerLink="{{hub.hubID}}"
@@ -18,3 +18,4 @@
      <button type="button" class="btn btn-danger"  (click)="delete(hub.hubID)" style="text-align: end;">delete</button>
     </div>
   </div>
+</div>

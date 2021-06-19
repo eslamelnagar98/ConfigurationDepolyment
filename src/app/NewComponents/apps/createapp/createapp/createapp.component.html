@@ -1,0 +1,10 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label> Name </mat-label>
+      <input matInput placeholder="Enter app Name" required minlength="2" name="appName" [(ngModel)]='appName'>
+    </mat-form-field>
+    <br>
+    <button type="submit" (click)="addapp()"   mat-flat-button color="primary">Add</button>
+  </form>
+
+  

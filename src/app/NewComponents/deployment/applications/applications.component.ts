@@ -34,7 +34,7 @@ export class ApplicationsComponent implements OnInit {
     
   }
 
-  create(){
+  Insert(){
     this.matdia.open(CreateAppComponent);
   }
 

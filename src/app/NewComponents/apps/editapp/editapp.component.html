@@ -1,0 +1,8 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label> Name </mat-label>
+      <input matInput placeholder="Enter app Name" name="appname" [(ngModel)]='appname'>
+    </mat-form-field>
+    <br>
+    <button type="submit" (click)="editapp()"   mat-flat-button color="primary">Add</button>
+  </form>

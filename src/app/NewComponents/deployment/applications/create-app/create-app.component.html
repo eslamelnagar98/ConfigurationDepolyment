@@ -1,4 +1,4 @@
-<form class="example-form">
+<!--<form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label> Name </mat-label>
       <input matInput placeholder="Enter Application Name" name="hubname" [(ngModel)]='appname'>
@@ -6,5 +6,23 @@
     <br>
     <button type="submit" (click)="addhub()"   mat-flat-button color="primary">Add</button>
   </form>
-
   
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>-->
+
+
+<form class="example-form">
+
+<mat-form-field appearance="fill">
+  <mat-label>Select application</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let app of apps" [value]="app.appID">{{app.appName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button type="submit" (click)="addapp()"   mat-flat-button color="primary">Add</button>
+
+</form>

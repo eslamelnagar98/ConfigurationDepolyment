@@ -1,8 +1,11 @@
+
+<div class="continer col-sm-8 ms-5" style="width: 600px;">
+
 <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="create()">create</button>
+  <button mat-raised-button color="primary" (click)="Insert()">Insert appliction</button>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
@@ -50,3 +53,4 @@
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
   </table>
+</div>
