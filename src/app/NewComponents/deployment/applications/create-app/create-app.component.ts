@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppserviceService } from 'src/app/Services/appservice.service';
 import { MatMenuModule} from '@angular/material/menu';
 import { IApplication } from 'src/app/models/Application';
+import { NgForm } from '@angular/forms';
+import { HubapplicationService } from 'src/app/Services/hubapplication.service';
+import { IHubapplication } from 'src/app/models/hubapplication';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-create-app',
@@ -15,8 +19,16 @@ export class CreateAppComponent implements OnInit {
   appname:string=""
   sub:Subscription|undefined
   apps:IApplication[]=[]
-  constructor(private appserv:AppserviceService,public dialogRef: MatDialogRef<CreateAppComponent>) { }
+  hubapp:IHubapplication={hubID:0,appID:0,assemblyPath:"",backupPath:""}
+  constructor(private appserv:AppserviceService,private hubappser:HubapplicationService,public dialogRef: MatDialogRef<CreateAppComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {hubid:number}) { 
+      this.hubapp.hubID = data.hubid;
+    }
+    
   
+
+  
+    
   ngOnInit(): void { 
   this.sub=this.appserv.GetAllApps().subscribe({
     next:(res)=>this.apps=res,
@@ -26,23 +38,20 @@ export class CreateAppComponent implements OnInit {
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
-  addapp()
+  apphub(hubappform:NgForm)
   {
-    
+    console.log(hubappform.value)
+        this.hubappser.Addappatpost({...hubappform.value,hubID:this.data.hubid}).subscribe({
+          next:(res)=>console.log(res),
+          error:(err)=>console.log(err),
+          complete:()=>this.Navigate()
+        })
   }
- /* addhub()
-  {
-   this.sub=this.appserv.AddApp({appName:this.appname}).subscribe({
-     next:(res)=>console.log(res),
-     error:(err)=>console.log(err),
-     complete:()=>this.Navigate()
-     
-     
-   })
-  }
+ 
     Navigate()
     {
+      
       this.dialogRef.close();
     }
-*/
+
 }

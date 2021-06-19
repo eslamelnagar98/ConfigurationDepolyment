@@ -1,1 +1,18 @@
-<p>edit-app works!</p>
+<form class="example-form" (ngSubmit)="edithub(hubappform)" #hubappform="ngForm">
+
+    <mat-form-field appearance="fill">
+      <mat-label>update application</mat-label>
+      
+      <mat-select [(ngModel)]=hubapp!.appID name="appID">
+        <mat-option *ngFor="let app of apps" [value]="app.appID">{{app.appName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <button type="submit"  class="btn btn-primary btn-block mb-4">update application</button>
+    <br>Dirty: {{hubappform.dirty}}
+<br>touched: {{hubappform.touched}}
+<br>valid: {{hubappform.valid}}
+
+<br>value: {{hubappform.value|json}}
+    </form>
+    

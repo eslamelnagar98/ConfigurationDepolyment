@@ -1,21 +1,21 @@
 
-  
-
-
-<div class="container col-sm-4 float-start" style="width: 250px;" >
+<div class="container col-sm-4 float-start" style="width: 400px;" >
   <button type="button" class="btn btn-primary"  (click)="add()">
     Add Hub
   </button>
-<div class="list-group" >
+<div class="list-group mt-3">
   <div class="row" *ngFor ='let hub of Hubs'>
-    <a href="#" class="list-group-item list-group-item-action" aria-current="true" 
-      routerLink="{{hub.hubID}}"
+    <a  class="list-group-item list-group-item-action" style="width: 200px;" aria-current="true" 
+      routerLink="{{hub.hubID}}" 
+      routerLinkActive="active"
+  
     >
      {{hub.hubName}}
      
-    </a>
-    <button type="button" class="btn btn-warning" (click)="edit(hub.hubName, hub.hubID)" style="text-align: end;">edit</button>
-     <button type="button" class="btn btn-danger"  (click)="delete(hub.hubID)" style="text-align: end;">delete</button>
+    </a> 	&nbsp; 	&nbsp;
+    <button  type="button" class="btn btn-warning"  (click)="edit(hub.hubName, hub.hubID)" style="text-align: center;height: 35px;  width: 50px;">Edit</button>
+    &nbsp; 	&nbsp;
+    <button type="button" class="btn btn-danger"  (click)="delete(hub.hubID)" style="text-align: left; height: 35px; width: 60px;">Delete</button>
     </div>
   </div>
 </div>

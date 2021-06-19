@@ -24,13 +24,13 @@
     <!-- edit Column -->
     <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> edit </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="edit()" class="btn btn-warning">edit</button></td>
+        <td mat-cell *matCellDef="let element"> <button (click)="edit(element.appID)" class="btn btn-warning">edit</button></td>
       </ng-container>
 
       <!-- delete Column -->
     <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> delete </th>
-        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn">delete</button></td>
+        <td mat-cell *matCellDef="let element"> <button (click)="delete(element.appID)" mat-raised-button color="warn">delete</button></td>
       </ng-container>
 
     <!-- Deploy Column -->
