@@ -1,1 +1,4 @@
-<p>new-deploy works!</p>
+<div class="input-group mb-3 my-4">
+    <input id="filesSelector" multiple type="file" class="form-control mx-3" (change)="handleFileInput($event.target)">
+    <button mat-raised-button color="primary" (click)="Deploy()">Deploy</button>
+</div>
