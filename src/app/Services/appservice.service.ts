@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError} from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { IApplication } from '../models/Application';
+import { IHubapplication } from '../models/hubapplication';
 
 
 @Injectable({
@@ -27,8 +28,8 @@ export class AppserviceService {
    return this.http.get<IApplication>(`${this.url}/${id}`)
  }
 
- getHubApplicationsById(hubId: number):Observable<IApplication[]> {
-  return this.http.get<IApplication[]>(`${this.url}/GetAppByhubID/${hubId}`)
+ getHubApplicationsById(hubId: number):Observable<IHubapplication[]> {
+  return this.http.get<IHubapplication[]>(`${this.url}/GetAppByhubID/${hubId}`)
  }
 
  AddApp(newapp:IApplication):Observable<IApplication>

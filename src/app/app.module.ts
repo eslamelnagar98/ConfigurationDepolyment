@@ -26,6 +26,7 @@ import { EditappComponent } from './NewComponents/apps/editapp/editapp.component
 import { MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NewDeployComponent } from './NewComponents/deployment/applications/new-deploy/new-deploy.component';
 
 
 
@@ -49,6 +50,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     Applications2Component,
     CreateappComponent,
     EditappComponent,
+    NewDeployComponent,
   ],
   imports: [
     HttpClientModule,

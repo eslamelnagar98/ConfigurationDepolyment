@@ -19,9 +19,9 @@ sub2:Subscription|undefined
 apps:IApplication[]=[]
 
   constructor(private appserv:AppserviceService, private hubappser:HubapplicationService,public dialogRef: MatDialogRef<EditAppComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {hubid:number,id:number}) { 
-      this.hubapp.hubID = data.hubid;
-      this.hubapp.appID=data.id;
+    @Inject(MAT_DIALOG_DATA) public data: {hubApplication:IHubapplication}) { 
+      this.hubapp = data.hubApplication;
+      //this.hubapp.appID=data.hubapplication.appID!;
     }
     
 
@@ -38,11 +38,11 @@ this.sub2=this.appserv.GetAllApps().subscribe({
   }
   edithub(hubappform:NgForm)
   {
-    console.log(hubappform.value)
-    console.log(this.data.hubid + "after destruct 2 ")
-    console.log(this.data.hubid + " 3 ")
-    console.log({...hubappform.value,hubID:this.data.hubid})
-    this.hubappser.Updateapphub({...hubappform.value,hubID:this.data.hubid},this.data.id).subscribe({
+    console.log(this.hubapp)
+    console.log(this.data.hubApplication.hubID + "after destruct 2 ")
+    console.log(this.data.hubApplication.hubID + " 3 ")
+    console.log({...hubappform.value,hubID:this.data.hubApplication.hubID})
+    this.hubappser.Updateapphub(this.hubapp, this.data.hubApplication.appID!).subscribe({
       next:()=>console.log("updated"),
       error:(err)=>console.log(err),
       complete:()=>this.Navigate()

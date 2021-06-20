@@ -25,6 +25,7 @@ export class HubapplicationService {
  }
   Addappatpost(newapphub:IHubapplication):Observable<IHubapplication>
   {
+    console.log(newapphub);
     this.hubid=newapphub.hubID;
     this.appid=newapphub.appID;
     return this.http.post<IHubapplication>(`${this.url}/${this.hubid}/${this.appid}`,newapphub,{

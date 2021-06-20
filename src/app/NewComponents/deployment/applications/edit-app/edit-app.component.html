@@ -1,18 +1,31 @@
 <form class="example-form" (ngSubmit)="edithub(hubappform)" #hubappform="ngForm">
 
+      <!--mat-select [(ngModel)]=hubapp!.appID name="appID">
     <mat-form-field appearance="fill">
       <mat-label>update application</mat-label>
       
-      <mat-select [(ngModel)]=hubapp!.appID name="appID">
         <mat-option *ngFor="let app of apps" [value]="app.appID">{{app.appName}}</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field-->
     
+    <mat-form-field class="example-full-width">
+      <mat-label>Assumbly Path</mat-label>
+      <input matInput name="assemblyPath" [(ngModel)]=hubapp!.assemblyPath >
+    </mat-form-field>
+    {{hubapp.assemblyPath}}
+  <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>backup Path</mat-label>
+      <input matInput name="backupPath" [(ngModel)]=hubapp!.backupPath >
+    </mat-form-field>
+
+    <br>
     <button type="submit"  class="btn btn-primary btn-block mb-4">update application</button>
-    <br>Dirty: {{hubappform.dirty}}
+  </form>
+    <!--br>Dirty: {{hubappform.dirty}}
 <br>touched: {{hubappform.touched}}
 <br>valid: {{hubappform.valid}}
 
-<br>value: {{hubappform.value|json}}
-    </form>
+<br>value: {{hubappform.value|json}} -->
+    
     

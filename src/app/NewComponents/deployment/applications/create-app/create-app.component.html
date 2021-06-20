@@ -3,12 +3,20 @@
 
 <mat-form-field appearance="fill">
   <mat-label>Select application</mat-label>
-  
   <mat-select [(ngModel)]=hubapp!.appID name="appID">
     <mat-option *ngFor="let app of apps" [value]="app.appID">{{app.appName}}</mat-option>
   </mat-select>
 </mat-form-field>
 
+<mat-form-field class="example-full-width">
+    <mat-label>Assumbly Path</mat-label>
+    <input matInput name="assemblyPath" [(ngModel)]=hubapp!.assemblyPath >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>backup Path</mat-label>
+    <input matInput name="backupPath" [(ngModel)]=hubapp!.backupPath >
+  </mat-form-field>
 <button type="submit"  class="btn btn-primary btn-block mb-4">Insert application</button>
 
 </form>

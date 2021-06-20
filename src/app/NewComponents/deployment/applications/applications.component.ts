@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IApplication } from 'src/app/models/Application';
+import { IHubapplication } from 'src/app/models/hubapplication';
 import { AppserviceService } from 'src/app/Services/appservice.service';
 import { HubapplicationService } from 'src/app/Services/hubapplication.service';
 import { CreateAppComponent } from './create-app/create-app.component';
@@ -25,12 +26,12 @@ export class ApplicationsComponent implements OnInit {
   }
    loaddata()
    {
-    this.AppserviceService.getHubApplicationsById(this.route.snapshot.params['id']).subscribe((data:IApplication[])=> { console.log(data); this.dataSource = new MatTableDataSource(data);})
+    this.AppserviceService.getHubApplicationsById(this.route.snapshot.params['id']).subscribe((data:IHubapplication[])=> { console.log(data); this.dataSource = new MatTableDataSource(data);})
 
    }
 
    displayedColumns: string[] = ['appID', 'appName', 'edit', 'delete', 'deploy', 'rollback'];
-   dataSource:MatTableDataSource<IApplication> = new MatTableDataSource();
+   dataSource:MatTableDataSource<IHubapplication> = new MatTableDataSource();
  
    applyFilter(event: Event) {
      const filterValue = (event.target as HTMLInputElement).value;
@@ -46,8 +47,8 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-  edit(id:number){
-   let ref= this.matdia.open(EditAppComponent,{data:{hubid:this.currentHubId,id}});
+  edit(application:IApplication){
+   let ref= this.matdia.open(EditAppComponent,{data:{hubApplication:application}});
     let unSub:Subscription=ref.afterClosed().subscribe({next:()=>this.loaddata(),complete:()=>unSub.unsubscribe()})
   }
   
