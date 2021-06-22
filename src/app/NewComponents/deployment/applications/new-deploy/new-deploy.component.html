@@ -1,9 +1,15 @@
-<div class="input-group mb-3 my-4">
+<div class="form-group mb-3 my-4">
     upload
     <input id="filesSelector" multiple type="file" class="form-control mx-3" (change)="handleFileInput($event.target)">
-    <br>
-    delete
-    <input id="deleteselector" multiple type="file" class="form-control mx-3" (change)="handleFileDelete($event.target)">
+   <select id="deleteSelect" class="m-4" multiple [(ngModel)]="selectedName" (change)="multipleselectinput()">
+        <option  *ngFor ='let file of filNames' [ngValue]="file"  >
+           {{file}}
+        </option>
+    </select>
+    </div>
+    {{selectedName|json}}
+    <button (click)="confirmdeploy()" class="btn btn-primary btn-block mb-4">Upload</button>
+
 <!--<form class="form-group  mt-3" (ngSubmit)="uploadsub(Uploadform)" #Uploadform="ngForm">
 
     <div class="form-group row mb-2">

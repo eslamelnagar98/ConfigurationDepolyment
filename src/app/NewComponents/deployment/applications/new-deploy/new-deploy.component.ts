@@ -20,17 +20,49 @@ export class NewDeployComponent implements OnInit {
  //DeletedFiles:string[]=['ahmed.txt','chris.txt'];
  DeletedFiles:string[]=[];
   uploadmodel:Iuploadingmodel={files:[],Deleted:[]}
+  filNames:string[]=[];
+  selectedName:string[]=[];
 
   ngOnInit(): void {
+    this.deployService.GetFileNames(this.data.hubId,this.data.applicationId).subscribe({
+      next:(res)=>{
+        this.filNames = res;
+        console.log(this.filNames)
+
+      },
+      error:(err)=>console.log(err)
+
+    })
   }
 
   handleFileInput(files: any) {
+    console.log("shawky");
+    console.log(files);
     console.log(files.files);
+    console.log("belal");
     this.fileToUpload = files.files
   }
   handleFileDelete(files: any) {
-    console.log(files.files);
+    
     this.DeletedFiles = files.files
+  }
+  multipleselectinput(){
+    console.log(this.selectedName)
+
+  }
+  confirmdeploy()
+  {
+    this.uploadmodel.files=this.fileToUpload; 
+    console.log("hereeeee")
+    console.log(this.uploadmodel.files)
+    this.uploadmodel.Deleted = this.selectedName; 
+    this.deployService.Deploy(this.uploadmodel,this.data.hubId,this.data.applicationId).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err),
+      complete: () => {
+        this.dialogRef.close();
+      }
+    })
   }
   /*Deploy() {
     
@@ -45,16 +77,16 @@ export class NewDeployComponent implements OnInit {
     )
     console.log("clicked");
   }*/
-  uploadsub(upload:NgForm)
-  {
+  // uploadsub(upload:NgForm)
+  // {
     
-    this.deployService.Deploy(upload.value,this.data.hubId,this.data.applicationId).subscribe({
-          next: (res) => console.log(res),
-          error: (err) => console.log(err),
-          complete: () => {
-            this.dialogRef.close();
-          }
-        })
-  }
+  //   this.deployService.Deploy(upload.value,this.data.hubId,this.data.applicationId).subscribe({
+  //         next: (res) => console.log(res),
+  //         error: (err) => console.log(err),
+  //         complete: () => {
+  //           this.dialogRef.close();
+  //         }
+  //       })
+  // }
 
 }
