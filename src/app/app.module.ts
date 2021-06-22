@@ -27,6 +27,8 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NewDeployComponent } from './NewComponents/deployment/applications/new-deploy/new-deploy.component';
+import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deployment.component';
+import { ApplicationTableComponent } from './NewComponents/new-deployment/application-table/application-table.component';
 
 
 
@@ -51,6 +53,8 @@ import { NewDeployComponent } from './NewComponents/deployment/applications/new-
     CreateappComponent,
     EditappComponent,
     NewDeployComponent,
+    NewDeploymentComponent,
+    ApplicationTableComponent,
   ],
   imports: [
     HttpClientModule,

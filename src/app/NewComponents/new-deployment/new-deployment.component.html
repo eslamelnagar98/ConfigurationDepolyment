@@ -1,0 +1,4 @@
+aaaaaaaaaaaa
+<ul class="list-group" *ngFor ='let hub of Hubs'>
+    <li class="list-group-item" aria-current="true" (click)="hubSelected($event.target, hub.hubID!)">{{hub?.hubName}}</li>
+  </ul>

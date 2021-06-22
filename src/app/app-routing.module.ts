@@ -11,12 +11,14 @@ import { HubsComponent } from './NewComponents/hubs/hubs.component'
 import { Applications2Component } from './NewComponents/apps/applications2/applications2.component';
 import { CreateappComponent } from './NewComponents/apps/createapp/createapp/createapp.component';
 import { EditappComponent } from './NewComponents/apps/editapp/editapp.component';
+import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deployment.component';
 
 
 const routes: Routes = [
   { path: 'hubs', component:HubsComponent},
   { path: 'applications', component:Applications2Component},
   { path: 'createapp', component:CreateappComponent},
+  { path: '', component:NewDeploymentComponent},
   //{ path: 'editapp/:id', component:EditappComponent},
 
 
