@@ -1,10 +1,15 @@
-
-<form class="form-group  mt-3" (ngSubmit)="uploadsub(Uploadform)" #Uploadform="ngForm">
+<div class="input-group mb-3 my-4">
+    upload
+    <input id="filesSelector" multiple type="file" class="form-control mx-3" (change)="handleFileInput($event.target)">
+    <br>
+    delete
+    <input id="deleteselector" multiple type="file" class="form-control mx-3" (change)="handleFileDelete($event.target)">
+<!--<form class="form-group  mt-3" (ngSubmit)="uploadsub(Uploadform)" #Uploadform="ngForm">
 
     <div class="form-group row mb-2">
         <label class="form-label" for="files"><b>Uploadfiles</b></label>
   
-        <input id="filesSelector" name="files" [(ngModel)]=fileToUpload  #Uploadvar="ngModel" multiple type="file" class="form-control mx-3">
+        <input id="filesSelector" name="files"  [(ngModel)]=fileToUpload  #Uploadvar="ngModel" multiple type="file" class="form-control mx-3">
     </div>
     <br><br>
     <div class="form-group row mb-2">
@@ -25,4 +30,4 @@
   
   <br>value: {{Uploadform.value|json}}
   </div>
-  
+-->
