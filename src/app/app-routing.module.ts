@@ -18,11 +18,8 @@ const routes: Routes = [
   { path: 'hubs', component:HubsComponent},
   { path: 'applications', component:Applications2Component},
   { path: 'createapp', component:CreateappComponent},
-  { path: '', component:NewDeploymentComponent},
+  { path: 'Deployments', component:NewDeploymentComponent},
   //{ path: 'editapp/:id', component:EditappComponent},
-
-
-
   { path: 'deployment', component: DeploymentComponent, children:[
     {path:':id', component:ApplicationsComponent}
   ] },

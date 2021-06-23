@@ -34,7 +34,9 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-  displayedColumns: string[] = ['appID', 'appName', 'edit', 'delete', 'deploy', 'rollback'];
+  //displayedColumns: string[] = ['appID', 'appName', 'edit', 'delete', 'deploy', 'rollback'];
+  displayedColumns: string[] = ['appID', 'appName', 'edit', 'delete'];
+
   dataSource: MatTableDataSource<IHubapplication> = new MatTableDataSource();
 
   applyFilter(event: Event) {

@@ -52,6 +52,7 @@ export class NewDeployComponent implements OnInit {
   }
   confirmdeploy()
   {
+    
     this.uploadmodel.files=this.fileToUpload; 
     console.log("hereeeee")
     console.log(this.uploadmodel.files)
