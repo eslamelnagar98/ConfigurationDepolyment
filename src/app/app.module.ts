@@ -29,9 +29,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApplicationTransform, HubTransform, NewDeployComponent } from './NewComponents/deployment/applications/new-deploy/new-deploy.component';
 import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deployment.component';
 import { ApplicationTableComponent } from './NewComponents/new-deployment/application-table/application-table.component';
+import { RollbackComponent } from './rollback/rollback.component';
 import { ShortString, StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
 import { EditStringManipulationComponent } from './NewComponents/string-manipulation/edit-string-manipulation/edit-string-manipulation.component';
 import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/edit-string-manipulation/show-value-details/show-value-details.component';
+import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 
 
 
@@ -58,12 +60,15 @@ import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/e
     NewDeployComponent,
     NewDeploymentComponent,
     ApplicationTableComponent,
+    RollbackComponent,
     HubTransform,
+    
     ApplicationTransform,
     StringManipulationComponent,
     ShortString,
     EditStringManipulationComponent,
     ShowValueDetailsComponent,
+    DeploymentsComponent
   ],
   imports: [
     HttpClientModule,
