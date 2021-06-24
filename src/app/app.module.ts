@@ -32,6 +32,7 @@ import { ApplicationTableComponent } from './NewComponents/new-deployment/applic
 import { ShortString, StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
 import { EditStringManipulationComponent } from './NewComponents/string-manipulation/edit-string-manipulation/edit-string-manipulation.component';
 import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/edit-string-manipulation/show-value-details/show-value-details.component';
+import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 
 
 
@@ -64,6 +65,7 @@ import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/e
     ShortString,
     EditStringManipulationComponent,
     ShowValueDetailsComponent,
+    DeploymentsComponent,
   ],
   imports: [
     HttpClientModule,

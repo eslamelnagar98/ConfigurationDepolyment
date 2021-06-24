@@ -1,0 +1,26 @@
+<table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">deploymentID</th>
+        <th scope="col">deploymentDate</th>
+        <th scope="col">deploymentType</th>
+        <th scope="col">originalDeployment</th>
+        <th scope="col">deployedBy</th>
+        <th scope="col">requestedBy</th>
+        <th scope="col">approvedBy</th>
+
+      </tr>
+    </thead>
+    <tbody >
+      <tr [class]="{'deployed':dep.deploymentType==1}" *ngFor='let dep of Deployments'>
+        <td>{{dep.deploymentID}}</td>
+        <td>{{dep.deploymentDate|date:'medium'}}</td>
+        <td >{{dep.deploymentType==0?"Deployment":"Rollback"}}</td>
+        <td >{{dep.originalDeployment==null?"original":dep.originalDeployment}}</td>
+        <td>{{dep.deployedBy}}</td>
+        <td>{{dep.requestedBy}}</td>
+        <td>{{dep.approvedBy}}</td>
+    
+      </tr>
+    </tbody>
+  </table>

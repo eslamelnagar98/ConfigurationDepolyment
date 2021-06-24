@@ -13,10 +13,12 @@ import { CreateappComponent } from './NewComponents/apps/createapp/createapp/cre
 import { EditappComponent } from './NewComponents/apps/editapp/editapp.component';
 import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deployment.component';
 import { StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
+import {DeploymentsComponent} from './NewComponents/deployments/deployments.component'
 
 
 const routes: Routes = [
   { path: 'hubs', component:HubsComponent},
+  { path:'Deployments',component:DeploymentsComponent},
   { path: 'applications', component:Applications2Component},
   { path: 'createapp', component:CreateappComponent},
   { path: 'Deployments', component:NewDeploymentComponent},
