@@ -1,4 +1,53 @@
-<div class="form-group mb-3 my-4">
+<h2 mat-dialog-title>Deploy</h2>
+
+<mat-dialog-content class="">
+    <h3>You will Deploy in Hubs:</h3>
+    <p style="font-size: 24px;">
+        {{data.hubs|hubTransform}}
+    </p>
+
+    <h3>Of Applications:</h3>
+    <p style="font-size: 24px;">
+        {{data.applications|applicationTransform}}
+    </p>
+
+    <input id="filesSelector" multiple type="file" class="form-control mx-3" (change)="handleFileInput($event.target)">
+  </mat-dialog-content>
+
+  <br><br>
+  <div class="row">
+    <div class="col-1"></div>
+      <div class="col-3">
+        <mat-form-field >
+            <mat-label>Deployed By</mat-label>
+            <input matInput placeholder="" [(ngModel)]="deployedBy">
+          </mat-form-field> 
+      </div>
+      <div class="col-3">
+        <mat-form-field > 
+            <mat-label>Requested By</mat-label>
+            <input matInput placeholder="" [(ngModel)]="requestedBy">
+          </mat-form-field> 
+      </div>
+      <div class="col-3">
+        <mat-form-field> 
+            <mat-label>Approved By</mat-label>
+            <input matInput placeholder="" [(ngModel)]="approvedBy">
+          </mat-form-field>
+      </div>
+      <div class="col-1"></div>
+  </div>
+
+
+  
+
+
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="confirmdeploy()" cdkFocusInitial>Upload</button>
+  </mat-dialog-actions>
+<!--div class="form-group mb-3 my-4">
     upload
     <input id="filesSelector" multiple type="file" class="form-control mx-3" (change)="handleFileInput($event.target)">
    <select id="deleteSelect" class="m-4" multiple [(ngModel)]="selectedName" (change)="multipleselectinput()">
@@ -7,8 +56,7 @@
         </option>
     </select>
     </div>
-    {{selectedName|json}}
-    <button (click)="confirmdeploy()" class="btn btn-primary btn-block mb-4">Upload</button>
+    <button (click)="confirmdeploy()" class="btn btn-primary btn-block mb-4">Upload</button-->
 
 <!--<form class="form-group  mt-3" (ngSubmit)="uploadsub(Uploadform)" #Uploadform="ngForm">
 

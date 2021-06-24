@@ -1,0 +1,8 @@
+li:hover:not(.active){
+    background-color: gray;
+    color: white;
+}
+
+li:hover{
+    cursor: pointer;
+}

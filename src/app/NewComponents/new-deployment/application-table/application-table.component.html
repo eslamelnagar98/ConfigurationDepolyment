@@ -1,1 +1,14 @@
-<p>application-table works!</p>
+<table class="table">
+    <thead>
+      <tr class="nottr" style="cursor: default;background-color: white;color: black;">
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor ='let application of apps' (click)="select($event.target, application)">
+        <td>{{application.appID}}</td>
+        <td>{{application.appName}}</td>
+      </tr>
+    </tbody>
+  </table>

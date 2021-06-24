@@ -1,4 +1,15 @@
-aaaaaaaaaaaa
-<ul class="list-group" *ngFor ='let hub of Hubs'>
-    <li class="list-group-item" aria-current="true" (click)="hubSelected($event.target, hub.hubID!)">{{hub?.hubName}}</li>
+<div class="d-grid gap-2">
+  <button type="button" class="btn btn-success" (click)="deploy()" [disabled]="selectApplications.length == 0">Deployment</button>
+</div>
+
+
+<br>
+<div class="row">
+<ul class="list-group mt-1 col-sm-2" *ngFor ='let hub of Hubs'>
+    <li class="list-group-item" aria-current="true" (click)="hubSelected($event.target, hub!)">{{hub?.hubName}}</li>
   </ul>
+  <!--div *ngFor ='let hub of Hubs' class="card" style="width: 10rem; padding: 6px; text-align: center; background-color: blue; color: white; font-size: 20px;">
+    {{hub?.hubName}}
+  </div-->
+</div>
+  <app-application-table (selectedApplications)="selectedApplications($event)" [applications]="passApplications"></app-application-table>
