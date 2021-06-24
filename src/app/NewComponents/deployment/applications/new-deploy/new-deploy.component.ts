@@ -1,10 +1,12 @@
-import { Inject } from '@angular/core';
+import { Inject, Pipe, PipeTransform } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IHubapplication } from 'src/app/models/hubapplication';
 import { DeployService } from 'src/app/Services/deploy.service';
 import { Iuploadingmodel } from 'src/app/models/iuploadingmodel';
 import { NgForm } from '@angular/forms';
+import { IHub } from 'src/app/models/Hub';
+import { IApplication } from 'src/app/models/Application';
 
 
 @Component({
@@ -13,9 +15,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./new-deploy.component.css']
 })
 export class NewDeployComponent implements OnInit {
-
+  deployedBy:string="";
+  requestedBy:string="";
+  approvedBy:string="";
   constructor(private deployService: DeployService, public dialogRef: MatDialogRef<NewDeployComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { hubId: number, applicationId: number }) { }
+    @Inject(MAT_DIALOG_DATA) public data:{hubs:IHub[] , applications:IApplication[]}) { }
   fileToUpload: File[] = [];
  //DeletedFiles:string[]=['ahmed.txt','chris.txt'];
  DeletedFiles:string[]=[];
@@ -24,7 +28,7 @@ export class NewDeployComponent implements OnInit {
   selectedName:string[]=[];
 
   ngOnInit(): void {
-    this.deployService.GetFileNames(this.data.hubId,this.data.applicationId).subscribe({
+    /*this.deployService.GetFileNames(this.data.hubId,this.data.applicationId).subscribe({
       next:(res)=>{
         this.filNames = res;
         console.log(this.filNames)
@@ -32,7 +36,7 @@ export class NewDeployComponent implements OnInit {
       },
       error:(err)=>console.log(err)
 
-    })
+    })*/
   }
 
   handleFileInput(files: any) {
@@ -52,8 +56,8 @@ export class NewDeployComponent implements OnInit {
   }
   confirmdeploy()
   {
-    
-    this.uploadmodel.files=this.fileToUpload; 
+    this.dialogRef.close();
+    /*this.uploadmodel.files=this.fileToUpload; 
     console.log("hereeeee")
     console.log(this.uploadmodel.files)
     this.uploadmodel.Deleted = this.selectedName; 
@@ -63,7 +67,7 @@ export class NewDeployComponent implements OnInit {
       complete: () => {
         this.dialogRef.close();
       }
-    })
+    })*/
   }
   /*Deploy() {
     
@@ -90,4 +94,18 @@ export class NewDeployComponent implements OnInit {
   //       })
   // }
 
+}
+
+@Pipe({name: 'hubTransform'})
+export class HubTransform implements PipeTransform {
+  transform(value: IHub[]): string[] {
+    return value.map(v=> " "+v.hubName);
+  }
+}
+
+@Pipe({name: 'applicationTransform'})
+export class ApplicationTransform implements PipeTransform {
+  transform(value: IApplication[]): string[] {
+    return value.map(v=> " "+v.appName);
+  }
 }

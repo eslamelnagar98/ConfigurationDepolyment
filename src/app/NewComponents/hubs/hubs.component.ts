@@ -14,7 +14,7 @@ import { EdithubComponent } from './edithub/edithub.component';
 export class HubsComponent implements OnInit , OnDestroy {
   Hubs:IHub[]=[]
   sub:Subscription|undefined
-  constructor(private hubser:HubserviceService,private matdia:MatDialog) { }
+  constructor(private hubser:HubserviceService, private matdia:MatDialog) { }
   ngOnDestroy(): void {
    this.sub?.unsubscribe()
   }

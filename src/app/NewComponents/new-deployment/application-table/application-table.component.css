@@ -1,0 +1,13 @@
+tr:hover:not(.active){
+    background-color: gray;
+    color: white;
+}
+
+tr:hover{
+    cursor: pointer;
+}
+
+.active{
+    color: white;
+    background-color: rgb(122, 177, 231);
+}

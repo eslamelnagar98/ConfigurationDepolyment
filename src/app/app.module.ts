@@ -26,7 +26,7 @@ import { EditappComponent } from './NewComponents/apps/editapp/editapp.component
 import { MatMenuModule} from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NewDeployComponent } from './NewComponents/deployment/applications/new-deploy/new-deploy.component';
+import { ApplicationTransform, HubTransform, NewDeployComponent } from './NewComponents/deployment/applications/new-deploy/new-deploy.component';
 import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deployment.component';
 import { ApplicationTableComponent } from './NewComponents/new-deployment/application-table/application-table.component';
 import { RollbackComponent } from './rollback/rollback.component';
@@ -57,6 +57,8 @@ import { RollbackComponent } from './rollback/rollback.component';
     NewDeploymentComponent,
     ApplicationTableComponent,
     RollbackComponent,
+    HubTransform,
+    ApplicationTransform
   ],
   imports: [
     HttpClientModule,

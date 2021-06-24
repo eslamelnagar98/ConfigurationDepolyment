@@ -7,6 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/Checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
+import {MatTreeModule} from '@angular/material/tree';
 
 const materialComponent:any=[
 
@@ -24,7 +25,8 @@ const materialComponent:any=[
   
     MatFormFieldModule,
   
-    MatListModule
+    MatListModule,
+    MatTreeModule
   
   ]
 @NgModule({
