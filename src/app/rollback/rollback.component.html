@@ -1,0 +1,83 @@
+
+
+<table class="table border table-striped " style="width: 500px; text-align: left; margin-left: 10px;">
+      <table class="table table-striped">
+        <thead>
+          Last Deployment
+            <button style="position: relative; background-color:gray"  class="btn btn-success">   Rollback </button>
+        </thead>
+       
+        <tbody>
+          <tr>
+            <td colspan="4">
+              <table class="table mb-0" *ngFor='let hub of hubs'>
+                    <thead>
+                      {{hub.HubName}}
+                        <button style="position: relative; text-align: center;" class="btn btn-success align-middle">   Rollback </button>
+
+                    </thead>
+                    <tbody class="mt-5">
+                        <tr>
+                          <table class="table table-bordered border-primary border border-dark">
+                              <thead class="mt-5">
+                                  Applications
+
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                  application 1
+                                  <button   style="position: relative; background-color: hotpink ;float: right;"  class="btn btn-success">   Rollback </button>
+
+                                  </tr>
+                                  <tr>
+                                      application 2
+                                  </tr>
+                                  <tr>
+                                      application 3
+                                  </tr>
+      
+                              </tbody>
+                
+                
+                        </table>
+                        </tr>
+                    </tbody>
+      
+      
+              </table>
+              <table class="table mb-0">
+                  <thead>
+                      Hub 2 
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <table class="table mb-0">
+                            <thead>
+                                Applications
+                            </thead>
+                            <tbody>
+                                <tr>
+                                application 1
+                                </tr>
+                                <tr>
+                                    application 2
+                                </tr>
+                                <tr>
+                                    application 3
+                                </tr>
+      
+                            </tbody>
+              
+              
+                      </table>
+                      </tr>
+                  </tbody>
+      
+      
+            </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+ 
+</table>
