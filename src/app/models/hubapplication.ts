@@ -5,5 +5,6 @@ export interface IHubapplication {
     appID: number,
     assemblyPath?: string,
     backupPath?: string,
+    ConfigFilepPath?: string,
     application?:IApplication
 }

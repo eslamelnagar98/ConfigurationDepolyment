@@ -7,6 +7,7 @@ import { Iuploadingmodel } from 'src/app/models/iuploadingmodel';
 import { NgForm } from '@angular/forms';
 import { IHub } from 'src/app/models/Hub';
 import { IApplication } from 'src/app/models/Application';
+import { UploadingFileViewModel } from 'src/app/models/UploadingFileViewModel';
 
 
 @Component({
@@ -56,9 +57,38 @@ export class NewDeployComponent implements OnInit {
   }
   confirmdeploy()
   {
-    this.dialogRef.close();
-    /*this.uploadmodel.files=this.fileToUpload; 
-    console.log("hereeeee")
+    //
+    //this.dialogRef.close();
+    //this.uploadmodel.files=this.fileToUpload; 
+
+    
+    let hubApplications:IHubapplication[]=[];
+    //if(this.data.hubs.length > this.data.applications.length){
+    this.data.hubs.forEach(h=>{
+        this.data.applications.forEach(a=>{
+          hubApplications.push({appID:a.appID!,hubID:h.hubID!,ConfigFilepPath:"",assemblyPath:"",backupPath:""});
+        })
+      })
+    
+    
+    let uploadingFileViewModel:UploadingFileViewModel = 
+        {
+          files:this.fileToUpload,
+          ApprovedBy:this.approvedBy,
+          DeployedBy:this.deployedBy,
+          RequestedBy:this.requestedBy,
+          HubsApplications:hubApplications
+        }
+        let hubsIds="";
+        this.data.hubs.map(h=>h.hubID).forEach(h=> hubsIds+=h+"_");
+        hubsIds = hubsIds.substr(0,hubsIds.length-1);
+
+        let appsIds="";
+        this.data.applications.map(h=>h.appID).forEach(h=> appsIds+=h+"_");
+        appsIds = appsIds.substr(0,appsIds.length-1);
+
+        this.deployService.Deploy(this.fileToUpload, hubsIds, appsIds, this.approvedBy, this.deployedBy,this.requestedBy).subscribe();
+    /*console.log("hereeeee")
     console.log(this.uploadmodel.files)
     this.uploadmodel.Deleted = this.selectedName; 
     this.deployService.Deploy(this.uploadmodel,this.data.hubId,this.data.applicationId).subscribe({
