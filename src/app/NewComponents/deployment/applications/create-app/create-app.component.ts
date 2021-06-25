@@ -40,7 +40,9 @@ export class CreateAppComponent implements OnInit {
   }
   apphub(hubappform:NgForm)
   {
-    console.log(hubappform.value)
+    hubappform.value.backupPath = hubappform.value.assemblyPath + '\\backups'
+    //console.log(hubappform.value)
+     
         this.hubappser.Addappatpost({...hubappform.value,hubID:this.data.hubid}).subscribe({
           next:(res)=>console.log(res),
           error:(err)=>console.log(err),
