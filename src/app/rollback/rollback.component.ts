@@ -66,6 +66,7 @@ export class RollbackComponent implements OnInit , OnDestroy {
   rollbackapp(app:Lastdeploymentviewmodel)
   {
      this.hubappmap.clear();
+     this.rollbackmodellist = [];
      this.rollbackmodel!.hubId=app.hubId;
      this.rollbackmodel!.appID=app.appId;
      this.rollbackmodel.approvedBy=this.approvedBy
@@ -82,6 +83,7 @@ export class RollbackComponent implements OnInit , OnDestroy {
   rollbackhub(lastviewmodelist:Lastdeploymentviewmodel[])
   {
     this.hubappmap.clear();
+    this.rollbackmodellist = [];
     for(let i=0;i<lastviewmodelist.length;i++)
     {
       let rollbackmodel1:RollBackViewModel={hubId:0,appID:0,deployedBy:"",approvedBy:"",requestedBy:""}
@@ -104,6 +106,7 @@ export class RollbackComponent implements OnInit , OnDestroy {
   rollbacklastdeployment()
   {
     this.hubappmap.clear();
+    this.rollbackmodellist = [];
     for(let i=0;i<this.lastdeployments.length;i++)
     {
       let rollbackmodel1:RollBackViewModel={hubId:0,appID:0,deployedBy:"",approvedBy:"",requestedBy:""}
