@@ -72,13 +72,13 @@ export class ApplicationsComponent implements OnInit {
     let ref = this.matdia.open(NewDeployComponent, { data: { hubId: hubId, applicationId: applicationId } });
   }
   Rollback(hubId: number, applicationId: number) {
-    this.rollbackService.Rollback(hubId, applicationId).subscribe({
+   /* this.rollbackService.Rollback(hubId, applicationId).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.log(err),
       complete: () => {
         console.log('done');
       }
-    })
+    })*/
 
   }
 

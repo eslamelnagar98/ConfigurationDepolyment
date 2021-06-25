@@ -1,6 +1,6 @@
 
 
-<table class="table border table-striped " style="width: 500px; text-align: left; margin-left: 10px;">
+<!--<table class="table border table-striped " style="width: 500px; text-align: left; margin-left: 10px;">
       <table class="table table-striped">
         <thead>
           Last Deployment
@@ -10,9 +10,9 @@
         <tbody>
           <tr>
             <td colspan="4">
-              <table class="table mb-0" *ngFor='let hub of hubs'>
+              <table class="table mb-0">
                     <thead>
-                      {{hub.HubName}}
+                      
                         <button style="position: relative; text-align: center;" class="btn btn-success align-middle">   Rollback </button>
 
                     </thead>
@@ -45,39 +45,45 @@
       
       
               </table>
-              <table class="table mb-0">
-                  <thead>
-                      Hub 2 
-                  </thead>
-                  <tbody>
-                      <tr>
-                        <table class="table mb-0">
-                            <thead>
-                                Applications
-                            </thead>
-                            <tbody>
-                                <tr>
-                                application 1
-                                </tr>
-                                <tr>
-                                    application 2
-                                </tr>
-                                <tr>
-                                    application 3
-                                </tr>
-      
-                            </tbody>
-              
-              
-                      </table>
-                      </tr>
-                  </tbody>
-      
-      
-            </table>
+            
             </td>
           </tr>
         </tbody>
       </table>
  
-</table>
+</table>-->
+  
+<label> Deployed by  </label>
+<br>
+<input type="text"  [(ngModel)]='deployedBy'>
+<br>
+<label> requestedBy  </label>
+<br>
+<input type="text"  [(ngModel)]='requestedBy'>
+<br>
+<label> approvedBy  </label>
+<br>
+<input type="text"  [(ngModel)]='approvedBy'>
+       
+
+<div style="border-style:solid;" class="mt-4">
+    Last  Deploymnet
+
+    <button style="background-color: gray;" (click)="rollbacklastdeployment()"  class="btn btn-warning">Roll Back</button>
+
+    <div  style="border-style: solid; padding: 5px; color: red;" *ngFor="let hub of hubappmap|keyvalue">
+  
+      {{hub.value[0].hubName}}  
+
+      <button (click)="rollbackhub(hub.value)" style="background-color:green;" class="btn btn-warning">Roll Back</button>
+ 
+        
+        <div  style="border-style: solid; padding: 5px; color:rgb(34, 34, 31);" *ngFor="let app of hub.value">
+                 
+                    {{app.applicationName}}  
+                    <button (click)="rollbackapp(app)" class="btn btn-warning">Roll Back</button>
+        </div>
+    </div>
+</div>
+
+    

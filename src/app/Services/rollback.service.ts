@@ -1,15 +1,21 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
+import { Observable, throwError } from 'rxjs';
+import { IApplication } from '../models/Application';
+import { RollBackViewModel } from '../models/roll-back-view-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RollbackService {
   private url = `https://localhost:44320/api/Rollback`;
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  Rollback(hubId: number, applicationId: number) {
-    return this.httpClient.get<Observable<any>>(`${this.url}/${hubId}/${applicationId}`);
+  Rollback(rollbackmode:RollBackViewModel[]) :Observable<void>
+  {
+    return this.http.post<void>(this.url,rollbackmode);
   }
+ 
 }
+

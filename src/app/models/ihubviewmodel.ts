@@ -1,4 +1,4 @@
 export interface IHubviewmodel {
-     HubID :number      
-    HubName :string
+     hubID :number      
+    hubName :string
 }
