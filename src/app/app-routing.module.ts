@@ -12,15 +12,18 @@ import { Applications2Component } from './NewComponents/apps/applications2/appli
 import { CreateappComponent } from './NewComponents/apps/createapp/createapp/createapp.component';
 import { EditappComponent } from './NewComponents/apps/editapp/editapp.component';
 import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deployment.component';
+import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 import { RollbackComponent } from './rollback/rollback.component';
+import { StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
 
 const routes: Routes = [
-  { path: 'hubs', component:HubsComponent},
+  { path:'Deployments',component:DeploymentsComponent},
   { path: 'applications', component:Applications2Component},
   { path: 'createapp', component:CreateappComponent},
   { path: 'Deployments', component:NewDeploymentComponent},
   { path: 'Rollback', component:RollbackComponent},
 
+  { path: 'stringManipulation', component:StringManipulationComponent},
   //{ path: 'editapp/:id', component:EditappComponent},
   { path: 'deployment', component: DeploymentComponent, children:[
     {path:':id', component:ApplicationsComponent}
