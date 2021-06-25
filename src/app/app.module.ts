@@ -35,6 +35,7 @@ import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/e
 import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 
 import { ManageComponent } from './components/manage/manage.component';
+import { DeploymentsFilesDetailsComponent } from './NewComponents/deployments/deployments-files-details/deployments-files-details.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ManageComponent } from './components/manage/manage.component';
     EditStringManipulationComponent,
     ShowValueDetailsComponent,
     DeploymentsComponent,
-    GetValue
+    GetValue,
+    DeploymentsFilesDetailsComponent
   ],
   imports: [
     HttpClientModule,
