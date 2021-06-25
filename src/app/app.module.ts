@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './components/navbar/app-navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppItemComponent } from './components/app-item/app-item.component';
-import { ManageComponent } from './components/manage/manage.component';
 import { HubsFromComponent } from './components/hubs-from/hubs-from.component';
 import { ApplicationsFromComponent } from './components/applications-from/applications-from.component';
 import { AppDetailsComponent } from './components/app-details/app-details.component';
@@ -35,7 +34,7 @@ import { EditStringManipulationComponent } from './NewComponents/string-manipula
 import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/edit-string-manipulation/show-value-details/show-value-details.component';
 import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 
-
+import { ManageComponent } from './components/manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { DeploymentsComponent } from './NewComponents/deployments/deployments.co
     AppNavbarComponent,
     HomeComponent,
     AppItemComponent,
-    ManageComponent,
     HubsFromComponent,
     ApplicationsFromComponent,
     AppDetailsComponent,
@@ -62,6 +60,7 @@ import { DeploymentsComponent } from './NewComponents/deployments/deployments.co
     ApplicationTableComponent,
     RollbackComponent,
     HubTransform,
+    ManageComponent,
     
     ApplicationTransform,
     StringManipulationComponent,
