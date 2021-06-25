@@ -1,20 +1,23 @@
-<mat-form-field class="example-full-width">
+<div class="example-full-width">
+<mat-form-field class="example-notfull-width">
     <mat-label>Key</mat-label>
-    <input matInput >
+    <input matInput [(ngModel)]="key">
 </mat-form-field>
+<button  mat-flat-button color="primary" style="font-size: large;" (click)="search()">search</button>
+</div>
 <br>
-<div class="d-grid gap-2">
+<!--div class="d-grid gap-2">
     <button (click)="editAllBranches()" mat-flat-button color="primary" style="font-size: large;">Edit All Branches</button>
 </div>
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree"-->
     <!-- This is the tree node template for leaf nodes -->
     <!-- There is inline padding applied to this node using styles.
       This padding value depends on the mat-icon-button width. -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    <!--mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         {{node.valueOrHubOrApp}} {{node?.fileName}}  &nbsp;&nbsp;<button (click)="edit(node)" mat-flat-button color="primary">Edit</button>
-    </mat-tree-node>
+    </mat-tree-node-->
     <!-- This is the tree node template for expandable nodes -->
-    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <!--mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <div class="mat-tree-node">
           <button mat-icon-button matTreeNodeToggle
                   [attr.aria-label]="'Toggle ' + node.valueOrHubOrApp">
@@ -23,13 +26,35 @@
             </mat-icon>
           </button>
           {{node.valueOrHubOrApp | shortString}} &nbsp;&nbsp; <button (click)="editBranch(node)" mat-flat-button color="primary">Edit All Branch</button>
-        </div>
+        </div-->
         <!-- There is inline padding applied to this div using styles.
             This padding value depends on the mat-icon-button width.  -->
-        <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+        <!--div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
             role="group">
           <ng-container matTreeNodeOutlet></ng-container>
       </div>
     </mat-nested-tree-node>
-  </mat-tree>
+  </mat-tree-->
+
+  <button (click)="editAll()" [hidden]="isFirstTime" class="example-full-width" mat-flat-button color="primary">Edit All Branchs</button>
+  <div  style="padding: 8px;" *ngFor="let map of mapDataSource | keyvalue" >
+    <button mat-icon-button >
+            <mat-icon (click)="tt($event.target)">
+              expand_more
+            </mat-icon>
+          </button>
+          
+    {{map.value|getValue}} &nbsp;&nbsp; <button (click)="editHubBranch(map.value)" mat-flat-button color="primary">Edit All Hub Branch</button>
+    <div style="padding: 10px;" *ngFor="let secondMap of map.value | keyvalue">
+      <button mat-icon-button >
+        <mat-icon (click)="tt($event.target)">
+          expand_more
+        </mat-icon>
+      </button>
+      {{secondMap.value |getHubName}} &nbsp;&nbsp; <button (click)="editBranch(secondMap.value)" mat-flat-button color="primary">Edit All Branch</button>
+      <div style="padding-left: 35px; padding-top: 10px;" *ngFor="let app of secondMap.value ">
+         {{app.appName}} &nbsp;&nbsp; <button (click)="edit(app)" mat-flat-button color="primary">Edit </button>
+      </div>
+    </div>
+  </div>
   

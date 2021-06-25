@@ -7,7 +7,10 @@
   .example-full-width {
     width: 100%;
   }
-  
+  .example-notfull-width {
+    width: 88%;
+  }
+
   .example-tree-invisible {
     display: none;
   }

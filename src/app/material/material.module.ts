@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 const materialComponent:any=[
 
@@ -28,7 +29,8 @@ const materialComponent:any=[
   
     MatListModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
+    ClipboardModule
   
   ]
 @NgModule({

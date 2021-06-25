@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
@@ -7,25 +7,31 @@ import {MatTreeNestedDataSource} from '@angular/material/tree';
 import { map } from 'jquery';
 import { MatDialog } from '@angular/material/dialog';
 import { EditStringManipulationComponent } from './edit-string-manipulation/edit-string-manipulation.component';
+import { StringManipulationService } from 'src/app/Services/string-manipulation.service';
+import { Subscription } from 'rxjs';
 
 /**
  * Food data with nested structure.
  * Each node has a name and an optional list of children.
  */
-interface ArchitNode {
-  id?:number,
-  level: number,
-  appOrHubId?:number,
-  valueOrHubOrApp: string,
-  fileName?: string,
-  children: ArchitNode[],
-  prev:ArchitNode|null
+class ArchitNode {
+  //id?:number;
+  //fileName?: string;
+  //appOrHubId?:number;
+  /*level: number;
+  valueOrHubOrApp: string;
+  children: ArchitNode[];
+  prev:ArchitNode|null*/
+  constructor(public level:number, public valueOrHubOrApp: string,
+       public children: ArchitNode[], public prev:ArchitNode|null,
+       public fileName?: string,
+       public appOrHubId?:number){}
 }
 const treeData: IStringManipulation={
   AppID:1, HubID:2, AppName:"Order", HubName:"Egypt", FileName:"test.xml", OldConfigurationResult:""
 }
 
-                    let node1:ArchitNode =  {level: 1, valueOrHubOrApp: '<add key="NewLastName" value="Hassan ElPrince" />', children:[], prev:null}
+                    let node1:ArchitNode =  {level: 1, valueOrHubOrApp: '<add key="NewLastName" value="Hassan ElPrince" /><add key="NewLastName" value="Hassan ElPrince" />', children:[], prev:null}
                     let node2:ArchitNode =  {level: 2, valueOrHubOrApp: 'Egypt', appOrHubId:1, children:[], prev:null}
                     let node3:ArchitNode =  {level: 3, valueOrHubOrApp: 'Order', appOrHubId:1, fileName:"test.xml", children:[], prev:null}
                     node1.children.push(node2);
@@ -108,17 +114,54 @@ interface ExampleFlatNode {
   templateUrl: './string-manipulation.component.html',
   styleUrls: ['./string-manipulation.component.css']
 })
-export class StringManipulationComponent implements OnInit {
+export class StringManipulationComponent implements OnInit, OnDestroy {
 
-  treeControl = new NestedTreeControl<ArchitNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<ArchitNode>();
-  constructor(private matDialod:MatDialog) {
-    this.dataSource.data = TREE_DATA;
+  //treeControl = new NestedTreeControl<ArchitNode>(node => node.children);
+  //dataSource = new MatTreeNestedDataSource<ArchitNode>();
+  subscription!:Subscription ;
+  key:string="";
+  isFirstTime:boolean=true;
+  constructor(private matDialod:MatDialog, private stringManipulationService:StringManipulationService) {
+    //this.dataSource.data = TREE_DATA;
+  }
+  ngOnDestroy(): void {
+    if(this.subscription)
+      this.subscription.unsubscribe();
   }
 
   hasChild = (_: number, node: ArchitNode) => !!node.children && node.children.length > 0;
 
   ngOnInit(): void {
+
+    
+  }
+
+  theSolver:IStringManipulation[]=[]
+  //ss!:ArchitNode;
+  mapDataSource:Map<string, Map<number,any[]>>=new Map(); //any is IStringManipulation
+  search(){
+    //if(this.subscription != null)
+     // this.subscription.unsubscribe();
+      
+    this.subscription =this.stringManipulationService.getValuesByKey(this.key).subscribe(
+      {next: (data)=>{
+        this.theSolver =data;
+        data.forEach(d=>{
+          if(this.mapDataSource.has(d.OldConfigurationResult)){
+            let seconMap = this.mapDataSource.get(d.OldConfigurationResult)!;
+            if(seconMap.has(d.HubID))
+              seconMap.get(d.HubID)?.push(d);
+            else
+              seconMap.set(d.HubID, [d]);
+          }else
+            this.mapDataSource.set(d.OldConfigurationResult, (new Map()).set(d.HubID, [d]) );
+        })
+        console.log(this.mapDataSource)
+      },
+      error:(err)=> console.log(err),
+      complete:()=>{console.log(this.mapDataSource) ,
+        this.isFirstTime = false
+      } } )
   }
  /*constructor() { this.dataSource.data = TREE_DATA; }
   private _transformer = (node: ArchitNode, level: number) => {
@@ -140,7 +183,47 @@ export class StringManipulationComponent implements OnInit {
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;*/
 
-  edit(node:ArchitNode){
+  edit(stringManipulation:IStringManipulation){
+    let _stringManipulate:IStringManipulation[] = [stringManipulation];
+    
+    this.matDialod.open(EditStringManipulationComponent, {
+      height: '90%',
+      width: '70%',
+      data:{stringManipulate:_stringManipulate}});
+  }
+  editBranch(stringManipulations:IStringManipulation[]){
+    let _stringManipulate:IStringManipulation[] = stringManipulations;
+    
+    this.matDialod.open(EditStringManipulationComponent, {
+      height: '90%',
+      width: '70%',
+      data:{stringManipulate:_stringManipulate}});
+  }
+  editHubBranch(map :Map<number,IStringManipulation[]>){
+    let _stringManipulate:IStringManipulation[] = [];
+    map.forEach((value: IStringManipulation[]) => {
+      value.forEach(v=> _stringManipulate.push(v));
+    });
+    this.matDialod.open(EditStringManipulationComponent, {
+      height: '90%',
+      width: '70%',
+      data:{stringManipulate:_stringManipulate}});
+  }
+  editAll(){
+    let _stringManipulate:IStringManipulation[] = [];
+    this.mapDataSource.forEach((map: Map<number,IStringManipulation[]>) => {
+      map.forEach((value: IStringManipulation[]) => {
+        value.forEach(v=> _stringManipulate.push(v));
+      });
+    });
+    
+    this.matDialod.open(EditStringManipulationComponent, {
+      height: '90%',
+      width: '70%',
+      data:{stringManipulate:_stringManipulate}});
+  }
+
+  /*edit(node:ArchitNode){
      console.log(node);
      let level3 = {AppName: node.valueOrHubOrApp, AppID:node.appOrHubId!, FileName:node.fileName!}
      node = node.prev!;
@@ -191,7 +274,7 @@ export class StringManipulationComponent implements OnInit {
     let Info:{hubs:string[], applications:string[], value:string}[] = []
     let hubsName:string[]=[];
     let appsName:string[]=[];
-    TREE_DATA.forEach(nodeLevel1=>{
+    this.dataSource.data.forEach(nodeLevel1=>{
       hubsName = [];
       appsName = [];
       nodeLevel1.children.forEach(nodeLevel2=>{
@@ -208,12 +291,48 @@ export class StringManipulationComponent implements OnInit {
       height: '90%',
       width: '70%',
       data:{stringManipulate:stringManipulate, Info:Info}});
+
+      
+  }*/
+
+  tt(x:any){
+    
+    //console.log(x.parentElement?.parentElement?.parentElement.style)
+    //console.log(x.parentElement?.parentElement.nextElementSibling.nextElementSibling)
+    if(x.textContent == "chevron_right"){
+      x.textContent = "expand_more";
+      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="block";
+    }else{
+      x.textContent = "chevron_right";
+      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="none";
+    }
   }
+
 }
 
 @Pipe({name: 'shortString'})
 export class ShortString implements PipeTransform {
   transform(value: string): string {
     return (value.length > 50)? value.substr(0,50)+" ... " : value;
+  }
+}
+
+
+@Pipe({name: 'getValue'})
+export class GetValue implements PipeTransform {
+  transform(value: Map<number,IStringManipulation[]>, all:boolean=false): string {
+    let str = value.values().next().value[0].oldConfigurationResult;
+    if(all)
+      return str;
+    //console.log(value.values().next().value[0]) 
+    return (str.length > 70)? str.substr(0,70)+" ... " : str;
+  }
+}
+
+@Pipe({name: 'getHubName'})
+export class GetHubName implements PipeTransform {
+  transform(value: any[]): string {
+    console.log(value[0].hubName)
+    return value[0].hubName;
   }
 }

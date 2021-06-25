@@ -17,7 +17,7 @@ import { RollbackComponent } from './rollback/rollback.component';
 import { StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
 
 const routes: Routes = [
-  { path:'Deployments',component:DeploymentsComponent},
+  //{ path:'Deployments',component:DeploymentsComponent},
   { path: 'applications', component:Applications2Component},
   { path: 'createapp', component:CreateappComponent},
   { path: 'Deployments', component:NewDeploymentComponent},
