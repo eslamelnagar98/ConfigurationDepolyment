@@ -12,13 +12,19 @@
       <mat-label>Assumbly Path</mat-label>
       <input matInput name="assemblyPath" [(ngModel)]=hubapp!.assemblyPath >
     </mat-form-field>
-    {{hubapp.assemblyPath}}
+ 
   <br>
     <mat-form-field class="example-full-width">
       <mat-label>backup Path</mat-label>
       <input matInput name="backupPath" [(ngModel)]=hubapp!.backupPath >
     </mat-form-field>
 
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Config Path</mat-label>
+      <input matInput name="ConfigFilepPath" [(ngModel)]=hubapp!.ConfigFilepPath >
+    </mat-form-field>
     <br>
     <button type="submit"  class="btn btn-primary btn-block mb-4">update application</button>
   </form>

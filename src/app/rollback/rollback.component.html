@@ -68,20 +68,35 @@
 
 
 -->
-<label> Deployed by  </label>
-<br>
+<div class="row">
+<!--label> Deployed by  </label-->
+<mat-form-field class="col-4">
+  <mat-label>Deployed by</mat-label>
+  <input matInput [(ngModel)]='deployedBy'>
+</mat-form-field>
+<!--br>
 <input type="text"  [(ngModel)]='deployedBy'>
-<br>
-<label> requestedBy  </label>
+<br-->
+<mat-form-field class="col-4">
+  <mat-label>requested By</mat-label>
+  <input matInput [(ngModel)]='requestedBy'>
+</mat-form-field>
+<!--label> requestedBy  </label>
 <br>
 <input type="text"  [(ngModel)]='requestedBy'>
-<br>
-<label> approvedBy  </label>
-<br>
-<input type="text"  [(ngModel)]='approvedBy'>
-       
+<br-->
 
-<div style="border-style:solid;" class="mt-4">
+<mat-form-field class="col-4">
+  <mat-label>approved By</mat-label>
+  <input matInput [(ngModel)]='approvedBy'>
+</mat-form-field>
+
+<!--label> approvedBy  </label>
+<br>
+<input type="text"  [(ngModel)]='approvedBy'-->
+</div>      
+
+<!--div style="border-style:solid;" class="mt-4">
     Last  Deploymnet
 
     <button style="background-color: gray;" (click)="rollbacklastdeployment()"  class="btn btn-warning">Roll Back</button>
@@ -99,5 +114,26 @@
                     <button (click)="rollbackapp(app)" class="btn btn-warning">Roll Back</button>
         </div>
     </div>
+</div-->
+
+<p style="font-size: 25px; font-weight: 600;"> 
+  <b>Last Deploymnet</b>
+</p>
+<button mat-flat-button color="primary" (click)="rollbacklastdeployment()"  class="example-full-widt btn btn-warning">Roll Back</button>
+
+<div  style="padding: 8px;" *ngFor="let hub of hubappmap|keyvalue" >
+  <button mat-icon-button >
+          <mat-icon (click)="tt($event.target)">
+            expand_more
+          </mat-icon>
+        </button>
+        
+        Hub:{{hub.value[0].hubName}} &nbsp;&nbsp; <button (click)="rollbackhub(hub.value)" mat-flat-button color="primary">Roll back</button>
+  <div style="padding: 20px;" *ngFor="let app of hub.value">
+    appllication: {{app.applicationName}}  &nbsp;&nbsp; <button (click)="rollbackapp(app)" mat-flat-button color="primary">Roll back</button>
+
+    
+  </div>
+  <hr>
 </div>
 

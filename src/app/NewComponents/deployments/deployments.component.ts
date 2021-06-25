@@ -38,7 +38,8 @@ export class DeploymentsComponent implements OnInit {
   {
     
 
-   this.matdia.open(DeploymentsFilesDetailsComponent,{data:{id:depid}})
+   this.matdia.open(DeploymentsFilesDetailsComponent,{height: '94%',
+   width: '80%',data:{id:depid}})
 
      
   }
