@@ -51,10 +51,11 @@
           expand_more
         </mat-icon>
       </button>
-      {{secondMap.value |getHubName}} &nbsp;&nbsp; <button (click)="editBranch(secondMap.value)" mat-flat-button color="primary">Edit All Branch</button>
+      Hub: {{secondMap.value |getHubName}} &nbsp;&nbsp; <button (click)="editBranch(secondMap.value)" mat-flat-button color="primary">Edit All Branch</button>
       <div style="padding-left: 35px; padding-top: 10px;" *ngFor="let app of secondMap.value ">
-         {{app.appName}} &nbsp;&nbsp; <button (click)="edit(app)" mat-flat-button color="primary">Edit </button>
+         application: {{app.appName}} &nbsp;&nbsp; <button (click)="edit(app)" mat-flat-button color="primary">Edit </button>
       </div>
+      <hr>
     </div>
   </div>
   
