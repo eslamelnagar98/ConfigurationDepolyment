@@ -68,7 +68,7 @@
 
 
 
--->
+
 <div class="row">
 <!--label> Deployed by  </label-->
 <mat-form-field class="col-4">
@@ -120,7 +120,8 @@
 <p style="font-size: 25px; font-weight: 600;"> 
   <b>Last Deploymnet</b>
 </p>
-<button mat-flat-button color="primary" (click)="rollbacklastdeployment()"  class="example-full-widt btn btn-warning">Roll Back</button>
+<!--[disabled]="deployedBy.length == 0 || requestedBy.length == 0 ||approvedBy.length  == 0"-->
+<button mat-flat-button color="primary" [disabled]="deployedBy.length == 0 || requestedBy.length == 0 ||approvedBy.length  == 0" (click)="rollbacklastdeployment()"  class="example-full-widt btn btn-warning">Roll Back</button>
 
 <div  style="padding: 8px;" *ngFor="let hub of hubappmap|keyvalue" >
   <button mat-icon-button >
@@ -129,11 +130,9 @@
           </mat-icon>
         </button>
         
-        Hub:{{hub.value[0].hubName}} &nbsp;&nbsp; <button (click)="rollbackhub(hub.value)" mat-flat-button color="primary">Roll back</button>
+        Hub:{{hub.value[0].hubName}} &nbsp;&nbsp; <button (click)="rollbackhub(hub.value)" [disabled]="deployedBy.length == 0 || requestedBy.length == 0 ||approvedBy.length  == 0" class="btn btn-warning" mat-flat-button color="primary">Roll back</button>
   <div style="padding: 20px;" *ngFor="let app of hub.value">
-    appllication: {{app.applicationName}}  &nbsp;&nbsp; <button (click)="rollbackapp(app)" mat-flat-button color="primary">Roll back</button>
-
-    
+    appllication: {{app.applicationName}}  &nbsp;&nbsp; <button (click)="rollbackapp(app)" [disabled]="deployedBy.length == 0 || requestedBy.length == 0 ||approvedBy.length  == 0" class="btn btn-warning" mat-flat-button color="primary">Roll back</button>
   </div>
   <hr>
 </div>
