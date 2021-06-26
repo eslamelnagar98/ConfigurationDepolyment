@@ -1,10 +1,13 @@
 
-<div class=" col-sm-4 float-start" style="width: 400px;" >
-  <button type="button" class="btn btn-primary"  (click)="add()">
+<div class="col-sm-3 float-start" >
+  <div class="row">
+  <button type="button" mat-raised-button color="primary" style="width: 200px;" (click)="add()">
     Add Hub
   </button>
+</div>
 <div class="list-group mt-3">
   <div class="row" *ngFor ='let hub of Hubs'>
+    
     <a  class="list-group-item list-group-item-action" style="width: 200px;" aria-current="true" 
       routerLink="{{hub.hubID}}" 
       routerLinkActive="active"

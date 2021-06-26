@@ -34,7 +34,17 @@ export class ApplicationsComponent implements OnInit {
 
   }
   loaddata() {
-    this.AppserviceService.getHubApplicationsById(this.route.snapshot.params['id']).subscribe((data: IHubapplication[]) => { console.log(data); this.dataSource = new MatTableDataSource(data); })
+    this.AppserviceService.getHubApplicationsById(this.route.snapshot.params['id'])
+      .subscribe((data: IHubapplication[]) => { 
+        console.log(data); this.dataSource = new MatTableDataSource(data); 
+        this.dataSource.filterPredicate = (data: IHubapplication, filterValue: string)=> {
+          console.log(data.application!.appName)
+          console.log(filterValue)
+          return data.application!.appName.toString() /** replace this with the column name you want to filter */
+            .trim()
+            .toLowerCase().includes(filterValue.trim().toLowerCase()) ;
+        };
+      })
 
   }
 
@@ -45,11 +55,12 @@ export class ApplicationsComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    //console.log(filterValue)
+    this.dataSource.filter = filterValue.trim();
   }
   ngOnInit(): void {
     console.log('this.route.snapshot.params from initializer' + this.route.snapshot.params['id'])
-
+    
   }
 
   Insert() {
