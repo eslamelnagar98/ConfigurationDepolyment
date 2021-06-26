@@ -44,7 +44,7 @@ export class EditStringManipulationComponent implements OnInit {
     this.data.stringManipulate.forEach(d=>{
       d.NewConfigurationResult = this.newValue;
     })
-    this.stringManipulationService.setValuesByKey(this.data.stringManipulate).subscribe({complete:()=>this.dialogRef.close()});
+    this.stringManipulationService.setValuesByKey(this.data.stringManipulate).subscribe({complete:()=>this.dialogRef.close({state:true})});
   }
 
   public getDataFromClipBoard(event: any): void { //any is ClipboardEvent

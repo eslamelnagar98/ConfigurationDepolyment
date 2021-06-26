@@ -140,8 +140,9 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
   //ss!:ArchitNode;
   mapDataSource:Map<string, Map<number,any[]>>=new Map(); //any is IStringManipulation
   search(){
-    //if(this.subscription != null)
-     // this.subscription.unsubscribe();
+    this.mapDataSource.clear();
+    if(this.subscription != null)
+      this.subscription.unsubscribe();
       
     this.subscription =this.stringManipulationService.getValuesByKey(this.key).subscribe(
       {next: (data)=>{
@@ -186,28 +187,31 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
   edit(stringManipulation:IStringManipulation){
     let _stringManipulate:IStringManipulation[] = [stringManipulation];
     
-    this.matDialod.open(EditStringManipulationComponent, {
+    let ref = this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
       width: '70%',
       data:{stringManipulate:_stringManipulate}});
+    let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
   editBranch(stringManipulations:IStringManipulation[]){
     let _stringManipulate:IStringManipulation[] = stringManipulations;
     
-    this.matDialod.open(EditStringManipulationComponent, {
+    let ref = this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
       width: '70%',
       data:{stringManipulate:_stringManipulate}});
+    let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
   editHubBranch(map :Map<number,IStringManipulation[]>){
     let _stringManipulate:IStringManipulation[] = [];
     map.forEach((value: IStringManipulation[]) => {
       value.forEach(v=> _stringManipulate.push(v));
     });
-    this.matDialod.open(EditStringManipulationComponent, {
+    let ref =this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
       width: '70%',
       data:{stringManipulate:_stringManipulate}});
+      let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
   editAll(){
     let _stringManipulate:IStringManipulation[] = [];
@@ -217,10 +221,11 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
       });
     });
     
-    this.matDialod.open(EditStringManipulationComponent, {
+    let ref = this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
       width: '70%',
       data:{stringManipulate:_stringManipulate}});
+      let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
 
   /*edit(node:ArchitNode){
