@@ -36,7 +36,10 @@ export class HubsComponent implements OnInit , OnDestroy {
   add()
   {
     let ref = this.matdia.open(CreatehubComponent);
-    let unSub:Subscription =ref.afterClosed().subscribe({next:()=> this.loadData(), complete:()=>unSub.unsubscribe()});
+    let unSub:Subscription =ref.afterClosed().subscribe({next:()=>{
+       this.loadData()
+      
+    }, complete:()=>unSub.unsubscribe()});
   }
 
   edit(name:string, id?:number){

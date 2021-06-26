@@ -23,9 +23,13 @@ export class ApplicationsComponent implements OnInit {
     private matdia: MatDialog,
     private hubappser: HubapplicationService,
     private rollbackService: RollbackService) {
-    route.paramMap.subscribe((d) => { this.loaddata() })
+    route.paramMap.subscribe((d) => { this.loaddata() ,
+    this.currentHubId = this.route.snapshot.params['id']
+    }
+    
+    )
 
-    this.currentHubId = this.route.snapshot.params['id'];
+    //this.currentHubId = this.route.snapshot.params['id'];
     //let hubId = this.route.snapshot.params['id'];
 
   }
@@ -44,6 +48,7 @@ export class ApplicationsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   ngOnInit(): void {
+    console.log('this.route.snapshot.params from initializer' + this.route.snapshot.params['id'])
 
   }
 
