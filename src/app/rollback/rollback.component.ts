@@ -57,7 +57,11 @@ export class RollbackComponent implements OnInit , OnDestroy {
            }
        })
     },
-       error:(err)=> console.log(err),
+       error:(err)=>{ console.log(err),
+       
+        
+        alert(err.error)
+       },
        complete:()=>{console.log(this.lastdeployments) ,
         console.log(this.hubappmap)
        }
@@ -75,7 +79,15 @@ export class RollbackComponent implements OnInit , OnDestroy {
      this.rollbackmodellist.push(this.rollbackmodel!)
      this.sub2=this.rollser.Rollback(this.rollbackmodellist).subscribe({
        next:()=>console.log("sending to service"),
-       error:(err)=>console.log(err),
+       error:(err)=>{console.log(err),
+        alert.name
+        {
+          'Warning'
+        }
+        
+        alert(err.error)
+    
+       },
        complete:()=>{console.log('done');this.loadData();}
      })
 
@@ -97,7 +109,14 @@ export class RollbackComponent implements OnInit , OnDestroy {
     }
     this.sub3=this.rollser.Rollback(this.rollbackmodellist).subscribe({
       next:()=>console.log("sending to service"),
-      error:(err)=>console.log(err),
+      error:(err)=>{console.log(err),
+        alert.name
+        {
+          'Warning'
+        }
+        
+        alert(err.error)
+      },
       complete:()=>{console.log('done');this.loadData();}
     })
 
@@ -120,7 +139,14 @@ export class RollbackComponent implements OnInit , OnDestroy {
     }
     this.sub4=this.rollser.Rollback(this.rollbackmodellist).subscribe({
       next:()=>console.log("sending to service"),
-      error:(err)=>console.log(err),
+      error:(err)=>{console.log(err),
+        alert.name
+        {
+          'Warning'
+        }
+        
+        alert(err.error)
+      },
       complete:()=>{console.log('done');this.loadData();}
     })
   }
