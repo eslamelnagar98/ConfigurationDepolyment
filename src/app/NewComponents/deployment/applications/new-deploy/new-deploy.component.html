@@ -45,7 +45,7 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button (click)="confirmdeploy()" cdkFocusInitial>Upload</button>
+    <button mat-flat-button color="accent" [disabled]="approvedBy.length == 0 || requestedBy.length == 0 || deployedBy.length == 0 || fileToUpload.length == 0" (click)="confirmdeploy()" cdkFocusInitial>Upload</button>
   </mat-dialog-actions>
 <!--div class="form-group mb-3 my-4">
     upload

@@ -87,7 +87,8 @@ export class NewDeployComponent implements OnInit {
         this.data.applications.map(h=>h.appID).forEach(h=> appsIds+=h+"_");
         appsIds = appsIds.substr(0,appsIds.length-1);
 
-        this.deployService.Deploy(this.fileToUpload, hubsIds, appsIds, this.approvedBy, this.deployedBy,this.requestedBy).subscribe();
+        this.deployService.Deploy(this.fileToUpload, hubsIds, appsIds, this.approvedBy, this.deployedBy,this.requestedBy)
+          .subscribe(()=>this.dialogRef.close());
     /*console.log("hereeeee")
     console.log(this.uploadmodel.files)
     this.uploadmodel.Deleted = this.selectedName; 
