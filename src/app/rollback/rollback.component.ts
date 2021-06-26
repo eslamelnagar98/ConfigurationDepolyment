@@ -38,7 +38,13 @@ export class RollbackComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub=  this.lastdepser.Getall().subscribe({next: (res) =>{ 
+    this.loadData();
+  }
+
+  loadData(){
+    if(this.sub)
+      this.sub.unsubscribe();
+    this.sub= this.lastdepser.Getall().subscribe({next: (res) =>{ 
       this.lastdeployments= res,
        
        res.forEach(x=>{
@@ -49,22 +55,18 @@ export class RollbackComponent implements OnInit , OnDestroy {
            {
              this.hubappmap.set(x.hubId,[x])
            }
-            
-
-
        })
-
-
     },
        error:(err)=> console.log(err),
        complete:()=>{console.log(this.lastdeployments) ,
         console.log(this.hubappmap)
        }
   })
- 
   }
   rollbackapp(app:Lastdeploymentviewmodel)
   {
+     this.hubappmap.clear();
+     this.rollbackmodellist = [];
      this.rollbackmodel!.hubId=app.hubId;
      this.rollbackmodel!.appID=app.appId;
      this.rollbackmodel.approvedBy=this.approvedBy
@@ -74,12 +76,14 @@ export class RollbackComponent implements OnInit , OnDestroy {
      this.sub2=this.rollser.Rollback(this.rollbackmodellist).subscribe({
        next:()=>console.log("sending to service"),
        error:(err)=>console.log(err),
-       complete:()=>console.log('done')
+       complete:()=>{console.log('done');this.loadData();}
      })
 
   }
   rollbackhub(lastviewmodelist:Lastdeploymentviewmodel[])
   {
+    this.hubappmap.clear();
+    this.rollbackmodellist = [];
     for(let i=0;i<lastviewmodelist.length;i++)
     {
       let rollbackmodel1:RollBackViewModel={hubId:0,appID:0,deployedBy:"",approvedBy:"",requestedBy:""}
@@ -94,13 +98,15 @@ export class RollbackComponent implements OnInit , OnDestroy {
     this.sub3=this.rollser.Rollback(this.rollbackmodellist).subscribe({
       next:()=>console.log("sending to service"),
       error:(err)=>console.log(err),
-      complete:()=>console.log('done')
+      complete:()=>{console.log('done');this.loadData();}
     })
 
 
   }
   rollbacklastdeployment()
   {
+    this.hubappmap.clear();
+    this.rollbackmodellist = [];
     for(let i=0;i<this.lastdeployments.length;i++)
     {
       let rollbackmodel1:RollBackViewModel={hubId:0,appID:0,deployedBy:"",approvedBy:"",requestedBy:""}
@@ -115,10 +121,21 @@ export class RollbackComponent implements OnInit , OnDestroy {
     this.sub4=this.rollser.Rollback(this.rollbackmodellist).subscribe({
       next:()=>console.log("sending to service"),
       error:(err)=>console.log(err),
-      complete:()=>console.log('done')
+      complete:()=>{console.log('done');this.loadData();}
     })
   }
  
+  tt(x:any){
+    //console.log(x.parentElement?.parentElement?.parentElement.style)
+    //console.log(x.parentElement?.parentElement.nextElementSibling.nextElementSibling)
+    if(x.textContent == "chevron_right"){
+      x.textContent = "expand_more";
+      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="block";
+    }else{
+      x.textContent = "chevron_right";
+      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="none";
+    }
+  }
   
 }
 

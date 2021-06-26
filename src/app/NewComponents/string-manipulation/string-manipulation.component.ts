@@ -301,7 +301,6 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
   }*/
 
   tt(x:any){
-    
     //console.log(x.parentElement?.parentElement?.parentElement.style)
     //console.log(x.parentElement?.parentElement.nextElementSibling.nextElementSibling)
     if(x.textContent == "chevron_right"){

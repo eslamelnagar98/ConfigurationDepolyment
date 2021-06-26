@@ -59,7 +59,7 @@ export class ApplicationsComponent implements OnInit {
   }
 
   edit(application: IHubapplication) {
-    let ref = this.matdia.open(EditAppComponent, { data: { hubApplication: application } });
+    let ref = this.matdia.open(EditAppComponent, {height:'70%',width:'70%', data: { hubApplication: application } });
     let unSub: Subscription = ref.afterClosed().subscribe({ next: () => this.loaddata(), complete: () => unSub.unsubscribe() })
   }
 
