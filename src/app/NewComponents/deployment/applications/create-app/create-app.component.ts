@@ -21,7 +21,7 @@ export class CreateAppComponent implements OnInit {
   apps:IApplication[]=[]
   hubapp:IHubapplication={hubID:0,appID:0,assemblyPath:"",backupPath:""}
   constructor(private appserv:AppserviceService,private hubappser:HubapplicationService,public dialogRef: MatDialogRef<CreateAppComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {hubid:number}) { 
+    @Inject(MAT_DIALOG_DATA) public data: {hubid:number, appsAlreadySelect:number[]}) { 
       this.hubapp.hubID = data.hubid;
     }
     
@@ -31,7 +31,7 @@ export class CreateAppComponent implements OnInit {
     
   ngOnInit(): void { 
   this.sub=this.appserv.GetAllApps().subscribe({
-    next:(res)=>this.apps=res,
+    next:(res)=>this.apps=res.filter(r=> !this.data.appsAlreadySelect.includes(r.appID!) ),
    error:(err)=>console.log(err)
   })
   }

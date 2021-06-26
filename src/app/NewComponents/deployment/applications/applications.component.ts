@@ -37,6 +37,7 @@ export class ApplicationsComponent implements OnInit {
     this.AppserviceService.getHubApplicationsById(this.route.snapshot.params['id'])
       .subscribe((data: IHubapplication[]) => { 
         console.log(data); this.dataSource = new MatTableDataSource(data); 
+        
         this.dataSource.filterPredicate = (data: IHubapplication, filterValue: string)=> {
           console.log(data.application!.appName)
           console.log(filterValue)
@@ -64,7 +65,7 @@ export class ApplicationsComponent implements OnInit {
   }
 
   Insert() {
-    let ref = this.matdia.open(CreateAppComponent, { data: { hubid: this.currentHubId } });
+    let ref = this.matdia.open(CreateAppComponent, { data: { hubid: this.currentHubId, appsAlreadySelect: this.dataSource.data.map(d=>d.application?.appID) } });
     let unsub: Subscription = ref.afterClosed().subscribe({ next: () => this.loaddata(), complete: () => unsub.unsubscribe() })
 
   }
