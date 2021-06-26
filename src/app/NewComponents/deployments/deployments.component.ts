@@ -3,6 +3,9 @@ import { DeploymentsService } from 'src/app/Services/deployments.service';
 import { IDeployment } from 'src/app/models/Deployment';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { Deploywithfilesviewmodel } from 'src/app/models/deploywithfilesviewmodel';
+import { DeploymentsFilesDetailsComponent } from './deployments-files-details/deployments-files-details.component';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-deployments',
@@ -12,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class DeploymentsComponent implements OnInit {
   Deployments:IDeployment[]=[];
   sub:Subscription|undefined
-  constructor(private Depser:DeploymentsService) { }
+  constructor(private Depser:DeploymentsService,private matdia:MatDialog) { }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe()
@@ -30,6 +33,14 @@ export class DeploymentsComponent implements OnInit {
       error:(err)=>console.log(err),
       complete:()=>console.log("Done")
     })
+  }
+  showdetails(depid:Number)
+  {
+    
+
+   this.matdia.open(DeploymentsFilesDetailsComponent,{data:{id:depid}})
+
+     
   }
 
 }

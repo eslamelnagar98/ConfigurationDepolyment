@@ -8,6 +8,7 @@
         <th scope="col">deployedBy</th>
         <th scope="col">requestedBy</th>
         <th scope="col">approvedBy</th>
+        <th scope="col">Details </th>
 
       </tr>
     </thead>
@@ -20,6 +21,7 @@
         <td>{{dep.deployedBy}}</td>
         <td>{{dep.requestedBy}}</td>
         <td>{{dep.approvedBy}}</td>
+        <td><button style="height: 35px;" (click)="showdetails(dep.deploymentID)"  class="btn btn-success">Details</button> </td>
     
       </tr>
     </tbody>

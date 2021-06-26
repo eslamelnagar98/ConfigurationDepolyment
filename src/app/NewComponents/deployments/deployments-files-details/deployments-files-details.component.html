@@ -1,0 +1,28 @@
+<table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Hub Name</th>
+        <th scope="col">App Name</th>
+        <th scope="col">File Name</th>
+        <th scope="col">Status</th>
+   
+      </tr>
+    </thead>
+    <tbody >
+      <tr  *ngFor='let filedetail of filesdetails'>
+        <td>{{filedetail.hubname}}</td>
+        <td>{{filedetail.appname}}</td>
+        <td>{{filedetail.filesname}}</td>
+        <td [class]="{'add':filedetail.status=='added','Modified':filedetail.status=='Modified'
+                     ,'Deleted':filedetail.status=='Deleted'}">
+            
+            {{filedetail.status}}
+        
+        
+        </td>
+  
+    
+      </tr>
+    </tbody>
+  </table>
+  <button mat-flat-button color="accent" mat-dialog-close>Cancel</button>
