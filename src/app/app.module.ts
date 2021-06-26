@@ -63,7 +63,6 @@ import { DeploymentsFilesDetailsComponent } from './NewComponents/deployments/de
     HubTransform,
     GetHubName,
     ManageComponent,
-    
     ApplicationTransform,
     StringManipulationComponent,
     ShortString,
