@@ -3,14 +3,14 @@
 <!--label> Deployed by  </label-->
 <mat-form-field class="col-4">
   <mat-label>Deployed by</mat-label>
-  <input matInput [(ngModel)]='deployedBy'>
+  <input matInput [(ngModel)]='deployedBy' required>
 </mat-form-field>
 <!--br>
 <input type="text"  [(ngModel)]='deployedBy'>
 <br-->
 <mat-form-field class="col-4">
   <mat-label>requested By</mat-label>
-  <input matInput [(ngModel)]='requestedBy'>
+  <input matInput [(ngModel)]='requestedBy' required>
 </mat-form-field>
 <!--label> requestedBy  </label>
 <br>
@@ -19,7 +19,7 @@
 
 <mat-form-field class="col-4">
   <mat-label>approved By</mat-label>
-  <input matInput [(ngModel)]='approvedBy'>
+  <input matInput [(ngModel)]='approvedBy' required>
 </mat-form-field>
 
 <!--label> approvedBy  </label>

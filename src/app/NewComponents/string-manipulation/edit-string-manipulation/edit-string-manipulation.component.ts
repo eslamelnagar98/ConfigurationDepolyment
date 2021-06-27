@@ -13,6 +13,10 @@ import { ShowValueDetailsComponent } from './show-value-details/show-value-detai
 export class EditStringManipulationComponent implements OnInit {
 
   newValue:string="";
+
+  deployedBy:string="";
+  approvedBy:string="";
+  requestedBy:string="";
   //mapDataSource:Map<string, Map<number,any[]>>=new Map();
   constructor(
     @Inject(MAT_DIALOG_DATA) public data:{stringManipulate:any[][][]}, // any is IStringManipulation
@@ -50,7 +54,7 @@ export class EditStringManipulationComponent implements OnInit {
         })
       })
     })
-    this.stringManipulationService.setValuesByKey(sendStringManipulation).subscribe({complete:()=>this.dialogRef.close({state:true})});
+    this.stringManipulationService.setValuesByKey(sendStringManipulation, this.approvedBy, this.deployedBy, this.requestedBy).subscribe({complete:()=>this.dialogRef.close({state:true})});
     
   }
 

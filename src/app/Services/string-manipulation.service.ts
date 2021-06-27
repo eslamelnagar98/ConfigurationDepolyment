@@ -15,8 +15,9 @@ export class StringManipulationService {
     return this.http.get<IStringManipulation[][][]>(this.url+'/'+key);
   }
 
-  public setValuesByKey(stringManipulation:IStringManipulation[]):Observable<void>{
-    return this.http.put<void>(this.url,stringManipulation);
+  public setValuesByKey(stringManipulation:IStringManipulation[], ApprovedBy:string, DeployedBy:string, RequestedBy:string):Observable<void>{
+    let url = this.url + '?ApprovedBy='+ ApprovedBy+"&DeployedBy="+DeployedBy+"&RequestedBy="+RequestedBy;
+    return this.http.put<void>(url,stringManipulation);
   }
 
 }
