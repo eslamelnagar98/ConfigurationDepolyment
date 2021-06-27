@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IHub } from 'src/app/models/Hub';
 import { IStringManipulation } from 'src/app/models/StringManipulation';
@@ -13,13 +13,13 @@ import { ShowValueDetailsComponent } from './show-value-details/show-value-detai
 export class EditStringManipulationComponent implements OnInit {
 
   newValue:string="";
-  mapDataSource:Map<string, Map<number,any[]>>=new Map();
+  //mapDataSource:Map<string, Map<number,any[]>>=new Map();
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data:{stringManipulate:IStringManipulation[]},
+    @Inject(MAT_DIALOG_DATA) public data:{stringManipulate:any[][][]}, // any is IStringManipulation
     private matDialog:MatDialog, private stringManipulationService:StringManipulationService,
     public dialogRef: MatDialogRef<EditStringManipulationComponent>,) {
     console.log(this.data)
-    this.data.stringManipulate.forEach(d=>{
+    /*this.data.stringManipulate.forEach(d=>{
       if(this.mapDataSource.has(d.OldConfigurationResult)){
         let seconMap = this.mapDataSource.get(d.OldConfigurationResult)!;
         if(seconMap.has(d.HubID))
@@ -28,23 +28,30 @@ export class EditStringManipulationComponent implements OnInit {
           seconMap.set(d.HubID, [d]);
       }else
         this.mapDataSource.set(d.OldConfigurationResult, (new Map()).set(d.HubID, [d]) );
-    })
+    })*/
    }
-   showDetails(map :Map<number,any[]>){
-     console.log(map.values().next().value)
+   showDetails(value :string){
+     //console.log(map.values().next().value)
      this.matDialog.open(ShowValueDetailsComponent, {height: '90%',
      width: '70%',
-     data:{value:map.values().next().value[0].oldConfigurationResult}});
+     data:{value:value}});
    }
 
   ngOnInit(): void {
   }
 
   send(){
-    this.data.stringManipulate.forEach(d=>{
-      d.NewConfigurationResult = this.newValue;
+    let sendStringManipulation:IStringManipulation[]=[];
+    this.data.stringManipulate.forEach(value=>{
+      value.forEach(hubs=>{
+        hubs.forEach(apps=>{
+          apps.NewConfigurationResult = this.newValue;
+          sendStringManipulation.push(apps);
+        })
+      })
     })
-    this.stringManipulationService.setValuesByKey(this.data.stringManipulate).subscribe({complete:()=>this.dialogRef.close({state:true})});
+    this.stringManipulationService.setValuesByKey(sendStringManipulation).subscribe({complete:()=>this.dialogRef.close({state:true})});
+    
   }
 
   public getDataFromClipBoard(event: any): void { //any is ClipboardEvent
@@ -53,4 +60,49 @@ export class EditStringManipulationComponent implements OnInit {
     });
   }
 
+  public getAppNames(list:IStringManipulation[][]):string[]{
+    console.log(list.map(hub=>hub.map(app=>app.AppName)))
+    return list.map(hub=>hub.map(app=>app.AppName)).map(l=>l[0]);
+  }
+
+}
+
+
+@Pipe({
+  name: 'filterUnique',
+  pure: false
+})
+export class FilterPipe implements PipeTransform {
+  transform(value:any[][], args?: any): any {
+      // Remove the duplicate elements
+      let list:any[] = [];
+      //list = JSON.parse(JSON.stringify(value.map(hub=>hub.map(app=>app.AppName))));
+      value.forEach(hubs=>hubs.forEach(apps=>{
+        //console.log(apps);
+        if(!list.map(l=>l.appName).includes(apps.appName))
+          list.push(apps)
+      }))
+      //console.log(list);
+      return list;
+  }
+}
+
+@Pipe({
+  name: 'displayApps',
+  pure: false
+})
+export class DisplayAppsPipe implements PipeTransform {
+  transform(value:any[], args?: any): any {
+    return value.map(v=> " "+v.appName);
+  }
+}
+
+@Pipe({
+  name: 'displayHubs',
+  pure: false
+})
+export class DisplayHubsPipe implements PipeTransform {
+  transform(value:any[][], args?: any): any {
+    return value.map(v=> " "+v[0].hubName);
+  }
 }

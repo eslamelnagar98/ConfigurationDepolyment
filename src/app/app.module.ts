@@ -30,7 +30,7 @@ import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deplo
 import { ApplicationTableComponent } from './NewComponents/new-deployment/application-table/application-table.component';
 import { RollbackComponent } from './rollback/rollback.component';
 import { GetHubName, GetValue, ShortString, StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
-import { EditStringManipulationComponent } from './NewComponents/string-manipulation/edit-string-manipulation/edit-string-manipulation.component';
+import { DisplayAppsPipe, DisplayHubsPipe, EditStringManipulationComponent, FilterPipe } from './NewComponents/string-manipulation/edit-string-manipulation/edit-string-manipulation.component';
 import { ShowValueDetailsComponent } from './NewComponents/string-manipulation/edit-string-manipulation/show-value-details/show-value-details.component';
 import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 
@@ -70,7 +70,10 @@ import { DeploymentsFilesDetailsComponent } from './NewComponents/deployments/de
     ShowValueDetailsComponent,
     DeploymentsComponent,
     GetValue,
-    DeploymentsFilesDetailsComponent
+    DeploymentsFilesDetailsComponent,
+    FilterPipe,
+    DisplayAppsPipe,
+    DisplayHubsPipe
   ],
   imports: [
     HttpClientModule,

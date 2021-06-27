@@ -13,13 +13,13 @@ import { AppserviceService } from 'src/app/Services/appservice.service';
   styleUrls: ['./edit-app.component.css']
 })
 export class EditAppComponent implements OnInit {
-  hubapp: IHubapplication = { hubID: 0, appID: 0, assemblyPath: "", backupPath: "" }
+  hubapp: any = { hubID: 0, appID: 0, assemblyPath: "", backupPath: "" } // any is IHubapplication
   sub: Subscription | undefined
   sub2: Subscription | undefined
   apps: IApplication[] = []
 
   constructor(private appserv: AppserviceService, private hubappser: HubapplicationService, public dialogRef: MatDialogRef<EditAppComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { hubApplication: IHubapplication }) {
+    @Inject(MAT_DIALOG_DATA) public data: { hubApplication: IHubapplication }) { 
     this.hubapp = data.hubApplication;
     //this.hubapp.appID=data.hubapplication.appID!;
   }

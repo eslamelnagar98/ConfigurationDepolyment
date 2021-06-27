@@ -156,10 +156,20 @@ export class RollbackComponent implements OnInit , OnDestroy {
     //console.log(x.parentElement?.parentElement.nextElementSibling.nextElementSibling)
     if(x.textContent == "chevron_right"){
       x.textContent = "expand_more";
-      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="block";
+      let nextX = x.parentElement!.parentElement.nextElementSibling.nextElementSibling;
+      while(nextX != null){
+        nextX.style!.display ="block";
+        nextX = nextX.nextElementSibling;
+        //console.log(nextX)
+      }
     }else{
       x.textContent = "chevron_right";
-      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="none";
+      let nextX = x.parentElement!.parentElement.nextElementSibling.nextElementSibling;
+      while(nextX != null){
+        nextX.style!.display ="none";
+        nextX = nextX.nextElementSibling;
+        //console.log(nextX)
+      }
     }
   }
   

@@ -101,6 +101,8 @@ const TREE_DATA: ArchitNode[] = [node1]
   }
 ];*/
 
+
+
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
   expandable: boolean;
@@ -115,7 +117,6 @@ interface ExampleFlatNode {
   styleUrls: ['./string-manipulation.component.css']
 })
 export class StringManipulationComponent implements OnInit, OnDestroy {
-
   //treeControl = new NestedTreeControl<ArchitNode>(node => node.children);
   //dataSource = new MatTreeNestedDataSource<ArchitNode>();
   subscription!:Subscription ;
@@ -136,18 +137,76 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
     
   }
 
-  theSolver:IStringManipulation[]=[]
+  //theSolver:IStringManipulation[]=[]
+  /*
+  [0][0][apps]
+  */
+  theSolver:any[][][] = []; // any is IStringManipulation
+  er:string[]=[];
   //ss!:ArchitNode;
   mapDataSource:Map<string, Map<number,any[]>>=new Map(); //any is IStringManipulation
   search(){
+    this.theSolver = [];
     this.mapDataSource.clear();
     if(this.subscription != null)
       this.subscription.unsubscribe();
       
     this.subscription =this.stringManipulationService.getValuesByKey(this.key).subscribe(
       {next: (data)=>{
-        this.theSolver =data;
-        data.forEach(d=>{
+        this.theSolver = data ;
+        data.forEach(d=> {
+          //this.theSolver.push([[d]]);
+          //let flag = true;
+          //if(this.theSolver.length > 0 ){
+            /*let isValueExist = false;
+            for(let i=0;i< this.theSolver.length;i++){
+              let isHubExist = false;
+              for(let j=0;j<this.theSolver[i].length;j++){
+                for(let k=0;k<this.theSolver[i][j].length;k++){
+                  isValueExist = this.theSolver[i][j][k].OldConfigurationResult == d.OldConfigurationResult;
+                  
+                  isHubExist = this.theSolver[i][j][k].HubID == d.HubID;
+                  console.log(this.theSolver[i][j][k] == d)
+                  if(isValueExist && isHubExist){
+                    this.theSolver[i][j].push(d);
+                    //if(i!= 0)
+                    console.log(">>>>>>>>>>",i,j)
+                  }
+                  break;
+                }
+                if(isHubExist)
+                  break;
+              }
+              if(!isHubExist && isValueExist){
+                this.theSolver[i].push([d]);
+                console.log("<<<<<<<<<<<<<<<<")
+                break;
+              }
+            }
+            if(!isValueExist)
+              this.theSolver.push([[d]]);
+              //console.log(this.theSolver);
+
+            /*this.theSolver.forEach(values=>{
+              values.forEach(hubs=>{
+                hubs.forEach(app=>{
+                  if(app.OldConfigurationResult == d.OldConfigurationResult){
+                    this.theSolver.push([[d]]);
+                    flag = false;
+                  }
+                })
+              })
+            })
+            if(flag)
+              this.theSolver.push([[d]]);
+          }else{
+            let r = [[d]];
+            this.theSolver.push(r)
+          }
+          this.er.push(d.OldConfigurationResult);*/
+        });
+        console.log(this.theSolver)
+        /*data.forEach(d=>{
           if(this.mapDataSource.has(d.OldConfigurationResult)){
             let seconMap = this.mapDataSource.get(d.OldConfigurationResult)!;
             if(seconMap.has(d.HubID))
@@ -156,7 +215,7 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
               seconMap.set(d.HubID, [d]);
           }else
             this.mapDataSource.set(d.OldConfigurationResult, (new Map()).set(d.HubID, [d]) );
-        })
+        })*/
         console.log(this.mapDataSource)
       },
       error:(err)=> console.log(err),
@@ -185,7 +244,7 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;*/
 
   edit(stringManipulation:IStringManipulation){
-    let _stringManipulate:IStringManipulation[] = [stringManipulation];
+    let _stringManipulate:IStringManipulation[][][] = [[[stringManipulation]]];
     
     let ref = this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
@@ -194,7 +253,9 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
     let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
   editBranch(stringManipulations:IStringManipulation[]){
-    let _stringManipulate:IStringManipulation[] = stringManipulations;
+    //console.log(">>>>>>>>>>>")
+    //console.log(stringManipulations);
+    let _stringManipulate:IStringManipulation[][][] = [[stringManipulations]];
     
     let ref = this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
@@ -202,11 +263,14 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
       data:{stringManipulate:_stringManipulate}});
     let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
-  editHubBranch(map :Map<number,IStringManipulation[]>){
-    let _stringManipulate:IStringManipulation[] = [];
-    map.forEach((value: IStringManipulation[]) => {
+  editAllHubsBranch(map :IStringManipulation[][]){
+    //console.log(">>>>>>>>>>>")
+    //console.log(map);
+    let _stringManipulate:IStringManipulation[][][] = [map];
+    /*map.forEach((value: IStringManipulation[]) => {
       value.forEach(v=> _stringManipulate.push(v));
-    });
+    });*/
+    //console.log(_stringManipulate);
     let ref =this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
       width: '70%',
@@ -214,13 +278,13 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
       let sub = ref.afterClosed().subscribe((state)=> {if(state) this.search(); setTimeout(()=>sub.unsubscribe(),0)});
   }
   editAll(){
-    let _stringManipulate:IStringManipulation[] = [];
-    this.mapDataSource.forEach((map: Map<number,IStringManipulation[]>) => {
+    let _stringManipulate:IStringManipulation[][][] = this.theSolver;
+    /*this.mapDataSource.forEach((map: Map<number,IStringManipulation[]>) => {
       map.forEach((value: IStringManipulation[]) => {
         value.forEach(v=> _stringManipulate.push(v));
       });
-    });
-    
+    });*/
+    //console.log(Array.from(new Set(_stringManipulate.map(hubs=>hubs.map(hub=>hub.map(app=> app.AppName))))))
     let ref = this.matDialod.open(EditStringManipulationComponent, {
       height: '90%',
       width: '70%',
@@ -305,10 +369,20 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
     //console.log(x.parentElement?.parentElement.nextElementSibling.nextElementSibling)
     if(x.textContent == "chevron_right"){
       x.textContent = "expand_more";
-      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="block";
+      let nextX = x.parentElement!.parentElement.nextElementSibling.nextElementSibling;
+      while(nextX != null){
+        nextX.style!.display ="block";
+        nextX = nextX.nextElementSibling;
+        //console.log(nextX)
+      }
     }else{
       x.textContent = "chevron_right";
-      x.parentElement!.parentElement.nextElementSibling.nextElementSibling.style!.display ="none";
+      let nextX = x.parentElement!.parentElement.nextElementSibling.nextElementSibling;
+      while(nextX != null){
+        nextX.style!.display ="none";
+        nextX = nextX.nextElementSibling;
+        //console.log(nextX)
+      }
     }
   }
 
@@ -317,7 +391,7 @@ export class StringManipulationComponent implements OnInit, OnDestroy {
 @Pipe({name: 'shortString'})
 export class ShortString implements PipeTransform {
   transform(value: string): string {
-    return (value.length > 50)? value.substr(0,50)+" ... " : value;
+    return (value.length > 70)? value.substr(0,50)+" ... " : value;
   }
 }
 

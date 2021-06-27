@@ -11,8 +11,8 @@ export class StringManipulationService {
   private url = `https://localhost:44320/api/StringManipulation`;
   constructor(private http: HttpClient) { }
 
-  public getValuesByKey(key:string):Observable<IStringManipulation[]>{
-    return this.http.get<IStringManipulation[]>(this.url+'/'+key);
+  public getValuesByKey(key:string):Observable<IStringManipulation[][][]>{
+    return this.http.get<IStringManipulation[][][]>(this.url+'/'+key);
   }
 
   public setValuesByKey(stringManipulation:IStringManipulation[]):Observable<void>{

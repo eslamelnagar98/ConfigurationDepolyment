@@ -14,7 +14,7 @@
     <input matInput [(ngModel)]="newValue">
   </mat-form-field-->
 
-<mat-dialog-content *ngFor="let map of mapDataSource | keyvalue">
+<!--mat-dialog-content *ngFor="let map of mapDataSource | keyvalue">
     
     <div *ngFor="let secondMap of map.value | keyvalue">
       <h3>You will edit in config in Hubs:</h3>
@@ -30,6 +30,29 @@
         {{map.value|getValue}} 
         <button mat-flat-button color="accent" (click)="showDetails(map.value)">show in details</button>
         <button mat-icon-button [cdkCopyToClipboard]="map.value|getValue:true">
+        <mat-icon >
+        copy_all
+      </mat-icon></button> 
+    </p>
+    
+</mat-dialog-content-->
+<mat-dialog-content *ngFor="let value of data.stringManipulate">
+    
+    
+      <h3>You will edit in config in Hubs:</h3>
+      <p style="font-size: 24px;" >
+          {{value | displayHubs}}
+      </p>
+    
+      <h3>Of Applications:</h3>
+      <p style="font-size: 24px;" > 
+          {{value | filterUnique | displayApps}}
+      </p>
+      
+    <p>
+        {{value[0][0].oldConfigurationResult |shortString }} 
+        <button mat-flat-button color="accent" (click)="showDetails(value[0][0].oldConfigurationResult)">show in details</button>
+        <button mat-icon-button [cdkCopyToClipboard]="value[0][0].oldConfigurationResult">
         <mat-icon >
         copy_all
       </mat-icon></button> 
@@ -52,5 +75,5 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button  (click)="send()" cdkFocusInitial>Edit</button>
+    <button mat-button [disabled]="newValue.length == 0" (click)="send()" cdkFocusInitial>Edit</button>
   </mat-dialog-actions>

@@ -37,7 +37,7 @@
   </mat-tree-->
 
   <button (click)="editAll()" [hidden]="isFirstTime" class="example-full-width" mat-flat-button color="primary">Edit All Branchs</button>
-  <div  style="padding: 8px;" *ngFor="let map of mapDataSource | keyvalue" >
+  <!--div  style="padding: 8px;" *ngFor="let map of mapDataSource | keyvalue" >
     <button mat-icon-button >
             <mat-icon (click)="tt($event.target)">
               expand_more
@@ -57,5 +57,27 @@
       </div>
       <hr>
     </div>
-  </div>
+  </div-->
   
+
+    <div  style="padding: 8px;" *ngFor="let value of theSolver" >
+    <button mat-icon-button >
+            <mat-icon (click)="tt($event.target)">
+              expand_more
+            </mat-icon>
+          </button>
+          
+    {{value[0][0].oldConfigurationResult |shortString}} &nbsp;&nbsp; <button (click)="editAllHubsBranch(value)" mat-flat-button color="primary">Edit All Hub Branch</button>
+    <div style="padding: 10px;" *ngFor="let hub of value">
+      <button mat-icon-button >
+        <mat-icon (click)="tt($event.target)">
+          expand_more
+        </mat-icon>
+      </button>
+      Hub: {{hub[0].hubName}} &nbsp;&nbsp; <button (click)="editBranch(hub)" mat-flat-button color="primary">Edit All Branch</button>
+      <div style="padding-left: 35px; padding-top: 10px;" *ngFor="let app of hub ">
+         application: {{app.appName}} &nbsp;&nbsp; <button (click)="edit(app)" mat-flat-button color="primary">Edit </button>
+      </div>
+      <hr>
+    </div>
+  </div>
