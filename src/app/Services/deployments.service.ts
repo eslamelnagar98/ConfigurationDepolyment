@@ -19,8 +19,28 @@ export class DeploymentsService {
 {
   return this.http.get<IDeployment[]>(this.url).pipe
   (
-    tap(data=>console.log('all',JSON.stringify(data)))
-  )
+    map(res=>{res.forEach(x => {
+     
+      if(x.deploymentType=='0')
+      {
+        x.deploymentType='Deployment'
+      }else if(x.deploymentType=='1')
+      {
+        x.deploymentType='Rollback'
+      }else if(x.deploymentType=='2')
+      {
+        x.deploymentType='Configuration'
+      }
+      else
+      {
+        x.deploymentType='RollbackConfiguration'
+      }
+      
+       
+     })
+     return res;
+    })
+    )
 }
 Getfiles(deployid:Number) :Observable<Deploywithfilesviewmodel[]>
 {

@@ -13,15 +13,22 @@
       </tr>
     </thead>
     <tbody >
-      <tr [class]="{'deployed':dep.deploymentType==1}" *ngFor='let dep of Deployments'>
+      <tr [class]="{'deployed':dep.deploymentType=='Deployment','roll':dep.deploymentType=='Rollback','config':dep.deploymentType=='Configuration','rollconfig':dep.deploymentType=='RollbackConfiguration'
+          
+             
+                    }" *ngFor='let dep of Deployments'>
         <td>{{dep.deploymentID}}</td>
         <td>{{dep.deploymentDate|date:'medium'}}</td>
-        <td >{{dep.deploymentType==0?"Deployment":"Rollback"}}</td>
+        <td >
+          {{dep.deploymentType}}
+        
+        
+        </td>
         <td >{{dep.originalDeployment==null?"original":dep.originalDeployment}}</td>
         <td>{{dep.deployedBy}}</td>
         <td>{{dep.requestedBy}}</td>
         <td>{{dep.approvedBy}}</td>
-        <td><button style="height: 35px;" (click)="showdetails(dep.deploymentID)"  class="btn btn-success">Details</button> </td>
+        <td><button style="height: 35px;" (click)="showdetails(dep.deploymentID)"  class="btn btn-dark">Details</button> </td>
     
       </tr>
     </tbody>
