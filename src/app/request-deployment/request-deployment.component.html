@@ -1,1 +1,14 @@
+<form class="example-form" (ngSubmit)="RequestDeployment(RequestDeploymentForm)" #RequestDeploymentForm="ngForm">
 
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Favorite food</mat-label>
+        <input name="RequestBy" matInput placeholder="Ex. Pizza">
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Leave a comment</mat-label>
+        <textarea name="RollbackPlan" matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Request</button>
+</form>

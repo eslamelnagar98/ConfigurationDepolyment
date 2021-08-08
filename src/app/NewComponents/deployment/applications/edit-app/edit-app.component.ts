@@ -25,7 +25,7 @@ export class EditAppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.sub = this.hubappser.Getappbyhub(this.hubapp.hubID,this.hubapp.appID).subscribe({
+    this.sub = this.hubappser.Getappbyhub(this.hubapp.hubID, this.hubapp.appID).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.log(err),
       complete: () => console.log("done")
