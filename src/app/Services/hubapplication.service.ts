@@ -11,7 +11,7 @@ import { IHubapplication } from '../models/hubapplication';
 export class HubapplicationService {
   hubid:number=0
   appid:number=0
-  private url = `https://localhost:44320/api/hubsApplication`;
+  private url = `https://localhost:5001/api/hubsApplication`;
 
 
 

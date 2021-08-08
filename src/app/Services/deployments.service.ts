@@ -12,7 +12,7 @@ export class DeploymentsService {
 
 
   constructor(public http:HttpClient) { }
-  private url = "https://localhost:44320/api/Deployment";
+  private url = "https://localhost:5001/api/Deployment";
  
 
   GetAllDeployment():Observable<IDeployment[]>

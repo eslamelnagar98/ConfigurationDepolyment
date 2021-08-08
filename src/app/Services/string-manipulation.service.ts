@@ -8,16 +8,16 @@ import { map, retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StringManipulationService {
-  private url = `https://localhost:44320/api/StringManipulation`;
+  private url = `https://localhost:5001/api/StringManipulation`;
   constructor(private http: HttpClient) { }
 
-  public getValuesByKey(key:string):Observable<IStringManipulation[][][]>{
-    return this.http.get<IStringManipulation[][][]>(this.url+'/'+key);
+  public getValuesByKey(key: string): Observable<IStringManipulation[][][]> {
+    return this.http.get<IStringManipulation[][][]>(this.url + '/' + key);
   }
 
-  public setValuesByKey(stringManipulation:IStringManipulation[], ApprovedBy:string, DeployedBy:string, RequestedBy:string):Observable<void>{
-    let url = this.url + '?ApprovedBy='+ ApprovedBy+"&DeployedBy="+DeployedBy+"&RequestedBy="+RequestedBy;
-    return this.http.put<void>(url,stringManipulation);
+  public setValuesByKey(stringManipulation: IStringManipulation[], ApprovedBy: string, DeployedBy: string, RequestedBy: string): Observable<void> {
+    let url = this.url + '?ApprovedBy=' + ApprovedBy + "&DeployedBy=" + DeployedBy + "&RequestedBy=" + RequestedBy;
+    return this.http.put<void>(url, stringManipulation);
   }
 
 }

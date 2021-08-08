@@ -19,14 +19,13 @@ export class EditAppComponent implements OnInit {
   apps: IApplication[] = []
 
   constructor(private appserv: AppserviceService, private hubappser: HubapplicationService, public dialogRef: MatDialogRef<EditAppComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { hubApplication: IHubapplication }) { 
+    @Inject(MAT_DIALOG_DATA) public data: { hubApplication: IHubapplication }) {
     this.hubapp = data.hubApplication;
-    //this.hubapp.appID=data.hubapplication.appID!;
   }
 
 
   ngOnInit(): void {
-    this.sub = this.hubappser.Getappbyhub(this.hubapp.hubID, this.hubapp.appID).subscribe({
+    this.sub = this.hubappser.Getappbyhub(this.hubapp.hubID,this.hubapp.appID).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.log(err),
       complete: () => console.log("done")
@@ -48,7 +47,6 @@ export class EditAppComponent implements OnInit {
     })
   }
   Navigate() {
-
     this.dialogRef.close();
   }
 }

@@ -1,6 +1,6 @@
-import { NgModule} from '@angular/core';
-import { RouterModule,Routes} from '@angular/router';
-import { AppItemComponent} from './components/app-item/app-item.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppItemComponent } from './components/app-item/app-item.component';
 import { ApplicationsFromComponent } from './components/applications-from/applications-from.component';
 import { HomeComponent } from './components/home/home.component';
 import { HubsFromComponent } from './components/hubs-from/hubs-from.component';
@@ -15,25 +15,31 @@ import { NewDeploymentComponent } from './NewComponents/new-deployment/new-deplo
 import { DeploymentsComponent } from './NewComponents/deployments/deployments.component';
 import { RollbackComponent } from './rollback/rollback.component';
 import { StringManipulationComponent } from './NewComponents/string-manipulation/string-manipulation.component';
+import { RequestDeploymentComponent } from './request-deployment/request-deployment.component';
 
 const routes: Routes = [
-  { path:'Deploymentshistory',component:DeploymentsComponent},
-  { path: 'applications', component:Applications2Component},
-  { path: 'createapp', component:CreateappComponent},
-  { path: 'Deployments', component:NewDeploymentComponent},
-  { path: 'Rollback', component:RollbackComponent},
+  { path: 'Deploymentshistory', component: DeploymentsComponent },
+  { path: 'applications', component: Applications2Component },
+  { path: 'createapp', component: CreateappComponent },
+  { path: 'Deployments', component: NewDeploymentComponent },
+  { path: 'Rollback', component: RollbackComponent },
 
-  { path: 'stringManipulation', component:StringManipulationComponent},
+  { path: 'stringManipulation', component: StringManipulationComponent },
   //{ path: 'editapp/:id', component:EditappComponent},
-  { path: 'deployment', component: DeploymentComponent, children:[
-    {path:':id', component:ApplicationsComponent}
-  ] },
-  { path: 'home', component:HomeComponent },
-  { path: 'home/:id',component: HomeComponent},
-  { path: 'Manage', component: ManageComponent,children:[
-  { path: 'hubsForm', component: HubsFromComponent },
-  { path: 'ApplicationForm', component: ApplicationsFromComponent},
-  ]}
+  {
+    path: 'deployment', component: DeploymentComponent, children: [
+      { path: ':id', component: ApplicationsComponent }
+    ]
+  },
+  { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
+  {
+    path: 'Manage', component: ManageComponent, children: [
+      { path: 'hubsForm', component: HubsFromComponent },
+      { path: 'ApplicationForm', component: ApplicationsFromComponent },
+    ]
+  },
+  { path: 'RequestDeployment', component: RequestDeploymentComponent }
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

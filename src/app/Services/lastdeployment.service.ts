@@ -11,7 +11,7 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LastdeploymentService {
-  private url = `https://localhost:44320/api/LastDeployment`;
+  private url = `https://localhost:5001/api/LastDeployment`;
   constructor(private http:HttpClient) { }
   Getall():Observable<Lastdeploymentviewmodel[]>
   {

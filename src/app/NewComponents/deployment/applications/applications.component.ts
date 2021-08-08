@@ -23,33 +23,26 @@ export class ApplicationsComponent implements OnInit {
     private matdia: MatDialog,
     private hubappser: HubapplicationService,
     private rollbackService: RollbackService) {
-    route.paramMap.subscribe((d) => { this.loaddata() ,
-    this.currentHubId = this.route.snapshot.params['id']
+    route.paramMap.subscribe((d) => {
+      this.loaddata(),
+        this.currentHubId = this.route.snapshot.params['id']
     }
-    
     )
-
-    //this.currentHubId = this.route.snapshot.params['id'];
-    //let hubId = this.route.snapshot.params['id'];
-
   }
   loaddata() {
     this.AppserviceService.getHubApplicationsById(this.route.snapshot.params['id'])
-      .subscribe((data: IHubapplication[]) => { 
-        console.log(data); this.dataSource = new MatTableDataSource(data); 
-        
-        this.dataSource.filterPredicate = (data: IHubapplication, filterValue: string)=> {
+      .subscribe((data: IHubapplication[]) => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.filterPredicate = (data: IHubapplication, filterValue: string) => {
           console.log(data.application!.appName)
           console.log(filterValue)
           return data.application!.appName.toString() /** replace this with the column name you want to filter */
             .trim()
-            .toLowerCase().includes(filterValue.trim().toLowerCase()) ;
+            .toLowerCase().includes(filterValue.trim().toLowerCase());
         };
       })
 
   }
-
-  //displayedColumns: string[] = ['appID', 'appName', 'edit', 'delete', 'deploy', 'rollback'];
   displayedColumns: string[] = ['appID', 'appName', 'edit', 'delete'];
 
   dataSource: MatTableDataSource<IHubapplication> = new MatTableDataSource();
@@ -61,17 +54,17 @@ export class ApplicationsComponent implements OnInit {
   }
   ngOnInit(): void {
     console.log('this.route.snapshot.params from initializer' + this.route.snapshot.params['id'])
-    
+
   }
 
   Insert() {
-    let ref = this.matdia.open(CreateAppComponent, { data: { hubid: this.currentHubId, appsAlreadySelect: this.dataSource.data.map(d=>d.application?.appID) } });
+    let ref = this.matdia.open(CreateAppComponent, { data: { hubid: this.currentHubId, appsAlreadySelect: this.dataSource.data.map(d => d.application?.appID) } });
     let unsub: Subscription = ref.afterClosed().subscribe({ next: () => this.loaddata(), complete: () => unsub.unsubscribe() })
 
   }
 
   edit(application: IHubapplication) {
-    let ref = this.matdia.open(EditAppComponent, {height:'70%',width:'70%', data: { hubApplication: application } });
+    let ref = this.matdia.open(EditAppComponent, { height: '70%', width: '70%', data: { hubApplication: application } });
     let unSub: Subscription = ref.afterClosed().subscribe({ next: () => this.loaddata(), complete: () => unSub.unsubscribe() })
   }
 
@@ -89,13 +82,13 @@ export class ApplicationsComponent implements OnInit {
     let ref = this.matdia.open(NewDeployComponent, { data: { hubId: hubId, applicationId: applicationId } });
   }
   Rollback(hubId: number, applicationId: number) {
-   /* this.rollbackService.Rollback(hubId, applicationId).subscribe({
-      next: (res) => console.log(res),
-      error: (err) => console.log(err),
-      complete: () => {
-        console.log('done');
-      }
-    })*/
+    /* this.rollbackService.Rollback(hubId, applicationId).subscribe({
+       next: (res) => console.log(res),
+       error: (err) => console.log(err),
+       complete: () => {
+         console.log('done');
+       }
+     })*/
 
   }
 

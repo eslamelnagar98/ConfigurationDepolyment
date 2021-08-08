@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './components/navbar/app-navbar.component';
@@ -22,7 +22,7 @@ import { EditAppComponent } from './NewComponents/deployment/applications/edit-a
 import { Applications2Component } from './NewComponents/apps/applications2/applications2.component';
 import { CreateappComponent } from './NewComponents/apps/createapp/createapp/createapp.component';
 import { EditappComponent } from './NewComponents/apps/editapp/editapp.component';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApplicationTransform, HubTransform, NewDeployComponent } from './NewComponents/deployment/applications/new-deploy/new-deploy.component';
@@ -36,6 +36,7 @@ import { DeploymentsComponent } from './NewComponents/deployments/deployments.co
 
 import { ManageComponent } from './components/manage/manage.component';
 import { DeploymentsFilesDetailsComponent } from './NewComponents/deployments/deployments-files-details/deployments-files-details.component';
+import { RequestDeploymentComponent } from './request-deployment/request-deployment.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { DeploymentsFilesDetailsComponent } from './NewComponents/deployments/de
     DeploymentsFilesDetailsComponent,
     FilterPipe,
     DisplayAppsPipe,
-    DisplayHubsPipe
+    DisplayHubsPipe,
+    RequestDeploymentComponent,
   ],
   imports: [
     HttpClientModule,
@@ -85,9 +87,9 @@ import { DeploymentsFilesDetailsComponent } from './NewComponents/deployments/de
     MatMenuModule,
     MatSelectModule,
     MatFormFieldModule
-    
+
   ],
-  entryComponents:[
+  entryComponents: [
     CreatehubComponent,
     EdithubComponent,
     CreateAppComponent,

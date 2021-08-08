@@ -9,7 +9,7 @@ import { UploadingFileViewModel } from '../models/UploadingFileViewModel';
 })
 export class DeployService {
  
-  private url = `https://localhost:44320/api/ReplaceDeployment`;
+  private url = `https://localhost:5001/api/ReplaceDeployment`;
   constructor(private httpClient: HttpClient) { }
 
   GetFileNames (hubId:number, applicationId:number, ):Observable<string[]>

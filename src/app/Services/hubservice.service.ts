@@ -8,7 +8,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 })
 export class HubserviceService {
   constructor(public http: HttpClient) { }
-  private url = "https://localhost:44320/api/hub";
+  private url = "https://localhost:5001/api/hub";
  
 
  
